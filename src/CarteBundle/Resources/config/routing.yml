@@ -1,0 +1,15 @@
+carte_homepage:
+    path:     /
+    defaults: { _controller: CarteBundle:Default:index }
+
+index:
+    path:     /index
+    defaults: { _controller: CarteBundle:Main:index }
+
+ranking:
+    path:     /ranking
+    defaults: { _controller: CarteBundle:Main:ranking }
+
+tourchoice:
+    path:     /tourchoice
+    defaults: { _controller: CarteBundle:Main:tourchoice }

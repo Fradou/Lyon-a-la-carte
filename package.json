@@ -1,0 +1,28 @@
+{
+  "name": "lyon-a-la-carte",
+  "version": "1.0.0",
+  "description": "Building a tourist circuit generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fradou/Lyon-a-la-carte.git"
+  },
+  "author": "Alexandre FRADET",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fradou/Lyon-a-la-carte/issues"
+  },
+  "homepage": "https://github.com/Fradou/Lyon-a-la-carte#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-jsmin": "^0.1.5",
+    "gulp-uglify": "^2.0.0"
+  }
+}
