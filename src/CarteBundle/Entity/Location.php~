@@ -47,7 +47,7 @@ class Location
     /**
      * @var string
      */
-    private $pho;
+    private $phone;
 
     /**
      * @var string
@@ -254,26 +254,26 @@ class Location
     }
 
     /**
-     * Set pho
+     * Set phone
      *
-     * @param string $pho
+     * @param string $phone
      * @return Location
      */
-    public function setPho($pho)
+    public function setPhone($phone)
     {
-        $this->pho = $pho;
+        $this->phone = $phone;
 
         return $this;
     }
 
     /**
-     * Get pho
+     * Get phone
      *
-     * @return string 
+     * @return string
      */
-    public function getPho()
+    public function getPhone()
     {
-        return $this->pho;
+        return $this->phone;
     }
 
     /**
