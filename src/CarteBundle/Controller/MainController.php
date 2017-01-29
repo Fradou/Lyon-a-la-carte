@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace CarteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 

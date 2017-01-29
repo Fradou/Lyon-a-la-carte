@@ -81,4 +81,8 @@ CarteBundle\Entity\Location:
         circuits:
             targetEntity: CarteBundle\Entity\Circuit
             mappedBy: locations
+    oneToMany:
+        notations:
+            targetEntity: CarteBundle\Entity\Notation
+            mappedBy: location
     lifecycleCallbacks: {  }

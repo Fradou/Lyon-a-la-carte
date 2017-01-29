@@ -38,4 +38,8 @@ CarteBundle\Entity\Circuit:
                 inverseJoinColumns:
                     location_id:
                         referencedColumnName: id
+    oneToMany:
+        notations:
+            targetEntity: CarteBundle\Entity\Notation
+            mappedBy: circuit
     lifecycleCallbacks: {  }

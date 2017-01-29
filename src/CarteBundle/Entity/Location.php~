@@ -528,4 +528,49 @@ class Location
     {
         return $this->longitude;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $circuits;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->circuits = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add circuits
+     *
+     * @param \CarteBundle\Entity\Circuit $circuits
+     * @return Location
+     */
+    public function addCircuit(\CarteBundle\Entity\Circuit $circuits)
+    {
+        $this->circuits[] = $circuits;
+
+        return $this;
+    }
+
+    /**
+     * Remove circuits
+     *
+     * @param \CarteBundle\Entity\Circuit $circuits
+     */
+    public function removeCircuit(\CarteBundle\Entity\Circuit $circuits)
+    {
+        $this->circuits->removeElement($circuits);
+    }
+
+    /**
+     * Get circuits
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCircuits()
+    {
+        return $this->circuits;
+    }
 }

@@ -136,4 +136,88 @@ class Circuit
     {
         return $this->cost;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $users;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $locations;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add users
+     *
+     * @param \fradou\UserBundle\Entity\User $users
+     * @return Circuit
+     */
+    public function addUser(\fradou\UserBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \fradou\UserBundle\Entity\User $users
+     */
+    public function removeUser(\fradou\UserBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Add locations
+     *
+     * @param \CarteBundle\Entity\Location $locations
+     * @return Circuit
+     */
+    public function addLocation(\CarteBundle\Entity\Location $locations)
+    {
+        $this->locations[] = $locations;
+
+        return $this;
+    }
+
+    /**
+     * Remove locations
+     *
+     * @param \CarteBundle\Entity\Location $locations
+     */
+    public function removeLocation(\CarteBundle\Entity\Location $locations)
+    {
+        $this->locations->removeElement($locations);
+    }
+
+    /**
+     * Get locations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLocations()
+    {
+        return $this->locations;
+    }
 }

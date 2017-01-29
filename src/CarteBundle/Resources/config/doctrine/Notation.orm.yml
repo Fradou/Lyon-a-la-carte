@@ -14,4 +14,17 @@ CarteBundle\Entity\Notation:
         comment:
             type: text
             nullable: true
+    manyToOne:
+        circuit:
+            targetEntity: CarteBundle\Entity\Circuit
+            inversedBy: notations
+            joinColumn:
+                name: circuit_id
+                referencedColumnName: id
+        location:
+            targetEntity: CarteBundle\Entity\Location
+            inversedBy: notations
+            joinColumn:
+                name: location_id
+                referencedColumnName: id
     lifecycleCallbacks: {  }

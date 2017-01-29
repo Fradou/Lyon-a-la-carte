@@ -80,4 +80,60 @@ class Notation
     {
         return $this->comment;
     }
+    /**
+     * @var \CarteBundle\Entity\Circuit
+     */
+    private $circuit;
+
+    /**
+     * @var \CarteBundle\Entity\Location
+     */
+    private $location;
+
+
+    /**
+     * Set circuit
+     *
+     * @param \CarteBundle\Entity\Circuit $circuit
+     * @return Notation
+     */
+    public function setCircuit(\CarteBundle\Entity\Circuit $circuit = null)
+    {
+        $this->circuit = $circuit;
+
+        return $this;
+    }
+
+    /**
+     * Get circuit
+     *
+     * @return \CarteBundle\Entity\Circuit 
+     */
+    public function getCircuit()
+    {
+        return $this->circuit;
+    }
+
+    /**
+     * Set location
+     *
+     * @param \CarteBundle\Entity\Location $location
+     * @return Notation
+     */
+    public function setLocation(\CarteBundle\Entity\Location $location = null)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return \CarteBundle\Entity\Location 
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
 }

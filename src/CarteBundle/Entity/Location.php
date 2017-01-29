@@ -573,4 +573,42 @@ class Location
     {
         return $this->circuits;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $notations;
+
+
+    /**
+     * Add notations
+     *
+     * @param \CarteBundle\Entity\Notation $notations
+     * @return Location
+     */
+    public function addNotation(\CarteBundle\Entity\Notation $notations)
+    {
+        $this->notations[] = $notations;
+
+        return $this;
+    }
+
+    /**
+     * Remove notations
+     *
+     * @param \CarteBundle\Entity\Notation $notations
+     */
+    public function removeNotation(\CarteBundle\Entity\Notation $notations)
+    {
+        $this->notations->removeElement($notations);
+    }
+
+    /**
+     * Get notations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNotations()
+    {
+        return $this->notations;
+    }
 }
