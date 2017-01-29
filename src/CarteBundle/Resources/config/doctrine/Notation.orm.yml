@@ -1,0 +1,17 @@
+CarteBundle\Entity\Notation:
+    type: entity
+    table: null
+    repositoryClass: CarteBundle\Repository\NotationRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        rating:
+            type: integer
+        comment:
+            type: text
+            nullable: true
+    lifecycleCallbacks: {  }
