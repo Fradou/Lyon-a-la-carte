@@ -611,4 +611,9 @@ class Location
     {
         return $this->notations;
     }
+
+    public function __toString()
+    {
+        return strval($this->id);
+    }
 }

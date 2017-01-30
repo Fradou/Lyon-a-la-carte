@@ -1,0 +1,24 @@
+notation_index:
+    path:     /
+    defaults: { _controller: "CarteBundle:Notation:index" }
+    methods:  GET
+
+notation_show:
+    path:     /{id}/show
+    defaults: { _controller: "CarteBundle:Notation:show" }
+    methods:  GET
+
+notation_new:
+    path:     /new
+    defaults: { _controller: "CarteBundle:Notation:new" }
+    methods:  [GET, POST]
+
+notation_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CarteBundle:Notation:edit" }
+    methods:  [GET, POST]
+
+notation_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CarteBundle:Notation:delete" }
+    methods:  DELETE

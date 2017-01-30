@@ -1,15 +1,11 @@
-carte_homepage:
-    path:     /
-    defaults: { _controller: CarteBundle:Default:index }
+carte_circuit:
+    resource: "@CarteBundle/Resources/config/routing/circuit.yml"
+    prefix:   /circuit
 
-index:
-    path:     /index
-    defaults: { _controller: CarteBundle:Main:index }
+carte_notation:
+    resource: "@CarteBundle/Resources/config/routing/notation.yml"
+    prefix:   /notation
 
-ranking:
-    path:     /ranking
-    defaults: { _controller: CarteBundle:Main:ranking }
-
-tourchoice:
-    path:     /tourchoice
-    defaults: { _controller: CarteBundle:Main:tourchoice }
+carte_main:
+    resource: "@CarteBundle/Resources/config/routing/main.yml"
+    prefix:   /
