@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Location
 {
     /**
-     * @var int
+     * @var integer
      */
     private $id;
 
@@ -104,6 +104,24 @@ class Location
      */
     private $longitude;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $notations;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $circuits;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->notations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->circuits = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -269,7 +287,7 @@ class Location
     /**
      * Get phone
      *
-     * @return string
+     * @return string 
      */
     public function getPhone()
     {
@@ -528,56 +546,6 @@ class Location
     {
         return $this->longitude;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $circuits;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->circuits = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add circuits
-     *
-     * @param \CarteBundle\Entity\Circuit $circuits
-     * @return Location
-     */
-    public function addCircuit(\CarteBundle\Entity\Circuit $circuits)
-    {
-        $this->circuits[] = $circuits;
-
-        return $this;
-    }
-
-    /**
-     * Remove circuits
-     *
-     * @param \CarteBundle\Entity\Circuit $circuits
-     */
-    public function removeCircuit(\CarteBundle\Entity\Circuit $circuits)
-    {
-        $this->circuits->removeElement($circuits);
-    }
-
-    /**
-     * Get circuits
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCircuits()
-    {
-        return $this->circuits;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $notations;
-
 
     /**
      * Add notations
@@ -612,8 +580,36 @@ class Location
         return $this->notations;
     }
 
-    public function __toString()
+    /**
+     * Add circuits
+     *
+     * @param \CarteBundle\Entity\Circuit $circuits
+     * @return Location
+     */
+    public function addCircuit(\CarteBundle\Entity\Circuit $circuits)
     {
-        return strval($this->id);
+        $this->circuits[] = $circuits;
+
+        return $this;
+    }
+
+    /**
+     * Remove circuits
+     *
+     * @param \CarteBundle\Entity\Circuit $circuits
+     */
+    public function removeCircuit(\CarteBundle\Entity\Circuit $circuits)
+    {
+        $this->circuits->removeElement($circuits);
+    }
+
+    /**
+     * Get circuits
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCircuits()
+    {
+        return $this->circuits;
     }
 }

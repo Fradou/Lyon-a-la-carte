@@ -10,12 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Notation
 {
     /**
-     * @var int
+     * @var integer
      */
     private $id;
 
     /**
-     * @var int
+     * @var integer
      */
     private $rating;
 
@@ -23,6 +23,16 @@ class Notation
      * @var string
      */
     private $comment;
+
+    /**
+     * @var \CarteBundle\Entity\Location
+     */
+    private $location;
+
+    /**
+     * @var \fradou\UserBundle\Entity\User
+     */
+    private $user;
 
 
     /**
@@ -80,39 +90,6 @@ class Notation
     {
         return $this->comment;
     }
-    /**
-     * @var \CarteBundle\Entity\Circuit
-     */
-    private $circuit;
-
-    /**
-     * @var \CarteBundle\Entity\Location
-     */
-    private $location;
-
-
-    /**
-     * Set circuit
-     *
-     * @param \CarteBundle\Entity\Circuit $circuit
-     * @return Notation
-     */
-    public function setCircuit(\CarteBundle\Entity\Circuit $circuit = null)
-    {
-        $this->circuit = $circuit;
-
-        return $this;
-    }
-
-    /**
-     * Get circuit
-     *
-     * @return \CarteBundle\Entity\Circuit 
-     */
-    public function getCircuit()
-    {
-        return $this->circuit;
-    }
 
     /**
      * Set location
@@ -135,5 +112,28 @@ class Notation
     public function getLocation()
     {
         return $this->location;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \fradou\UserBundle\Entity\User $user
+     * @return Notation
+     */
+    public function setUser(\fradou\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \fradou\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

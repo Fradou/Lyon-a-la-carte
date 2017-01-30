@@ -6,14 +6,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CircuitType extends AbstractType
+class CircuitnotationType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('category')->add('description')->add('cost')->add('locations')        ;
+        $builder->add('rating')->add('comment')->add('status')->add('experience')->add('circuit')->add('user')        ;
     }
     
     /**
@@ -22,7 +22,7 @@ class CircuitType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'CarteBundle\Entity\Circuit'
+            'data_class' => 'CarteBundle\Entity\Circuitnotation'
         ));
     }
 
@@ -31,7 +31,7 @@ class CircuitType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'cartebundle_circuit';
+        return 'cartebundle_circuitnotation';
     }
 
 

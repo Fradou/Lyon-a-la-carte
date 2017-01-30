@@ -13,7 +13,7 @@ class NotationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('rating')->add('comment')->add('circuit')->add('location')        ;
+        $builder->add('rating')->add('comment')->add('location')->add('user')        ;
     }
     
     /**
