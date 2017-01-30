@@ -1,0 +1,35 @@
+fradou\UserBundle\Entity\User:
+    type: entity
+    table: null
+    repositoryClass: fradou\UserBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        username:
+            type: string
+            length: '50'
+            unique: true
+        firstName:
+            type: string
+            length: '50'
+            nullable: true
+        lastName:
+            type: string
+            length: '50'
+            nullable: true
+        language:
+            type: string
+            length: '2'
+            nullable: true
+    oneToMany:
+        notations:
+            targetEntity: CarteBundle\Entity\Notation
+            mappedBy: user
+        circuitnotations:
+            targetEntity: CarteBundle\Entity\Circuitnotation
+            mappedBy: user
+    lifecycleCallbacks: {  }

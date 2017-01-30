@@ -1,0 +1,42 @@
+CarteBundle\Entity\Circuit:
+    type: entity
+    table: null
+    repositoryClass: CarteBundle\Repository\CircuitRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+            nullable: true
+            unique: true
+        category:
+            type: string
+            length: 255
+        description:
+            type: text
+            nullable: true
+        cost:
+            type: float
+            nullable: true
+    manyToMany:
+        locations:
+            targetEntity: CarteBundle\Entity\Location
+            inversedBy: circuits
+            joinTable:
+                name: circuits_locations
+                joinColumns:
+                    circuit_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    location_id:
+                        referencedColumnName: id
+    oneToMany:
+        circuitnotations:
+            targetEntity: CarteBundle\Entity\Circuitnotation
+            mappedBy: circuit
+    lifecycleCallbacks: {  }
