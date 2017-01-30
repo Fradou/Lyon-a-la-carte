@@ -1,7 +1,7 @@
-CarteBundle\Entity\Notation:
+CarteBundle\Entity\Circuitnotation:
     type: entity
     table: null
-    repositoryClass: CarteBundle\Repository\NotationRepository
+    repositoryClass: CarteBundle\Repository\CircuitnotationRepository
     id:
         id:
             type: integer
@@ -15,16 +15,22 @@ CarteBundle\Entity\Notation:
         comment:
             type: text
             nullable: true
+        status:
+            type: string
+            length: 255
+        experience:
+            type: integer
+            nullable: true
     manyToOne:
-        location:
-            targetEntity: CarteBundle\Entity\Location
-            inversedBy: notations
+        circuit:
+            targetEntity: CarteBundle\Entity\Circuit
+            inversedBy: circuitnotations
             joinColumn:
-                name: location_id
+                name: circuit_id
                 referencedColumnName: id
         user:
             targetEntity: fradou\UserBundle\Entity\User
-            inversedBy: notations
+            inversedBy: circuitnotations
             joinColumn:
                 name: user_id
                 referencedColumnName: id

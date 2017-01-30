@@ -4,4 +4,7 @@
 
 {% block body %}
 <h1>Welcome to the Main:tourchoice page</h1>
+{% for circuit in circuits %}
+    {{ circuit.name }} -category {{ circuit.category }} - {{ circuit.avr }}<br>
+{% endfor %}
 {% endblock %}

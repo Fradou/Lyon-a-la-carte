@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Circuits list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Cost</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for circuit in circuits %}
+            <tr>
+                <td><a href="{{ path('circuit_show', { 'id': circuit.id }) }}">{{ circuit.id }}</a></td>
+                <td>{{ circuit.name }}</td>
+                <td>{{ circuit.category }}</td>
+                <td>{{ circuit.description }}</td>
+                <td>{{ circuit.cost }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('circuit_show', { 'id': circuit.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('circuit_edit', { 'id': circuit.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('circuit_new') }}">Create a new circuit</a>
+        </li>
+    </ul>
+{% endblock %}

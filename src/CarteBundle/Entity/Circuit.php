@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Circuit
 {
     /**
-     * @var int
+     * @var integer
      */
     private $id;
 
@@ -34,6 +34,24 @@ class Circuit
      */
     private $cost;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $circuitnotations;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $locations;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->circuitnotations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -136,56 +154,38 @@ class Circuit
     {
         return $this->cost;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $users;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $locations;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add users
+     * Add circuitnotations
      *
-     * @param \fradou\UserBundle\Entity\User $users
+     * @param \CarteBundle\Entity\Circuitnotation $circuitnotations
      * @return Circuit
      */
-    public function addUser(\fradou\UserBundle\Entity\User $users)
+    public function addCircuitnotation(\CarteBundle\Entity\Circuitnotation $circuitnotations)
     {
-        $this->users[] = $users;
+        $this->circuitnotations[] = $circuitnotations;
 
         return $this;
     }
 
     /**
-     * Remove users
+     * Remove circuitnotations
      *
-     * @param \fradou\UserBundle\Entity\User $users
+     * @param \CarteBundle\Entity\Circuitnotation $circuitnotations
      */
-    public function removeUser(\fradou\UserBundle\Entity\User $users)
+    public function removeCircuitnotation(\CarteBundle\Entity\Circuitnotation $circuitnotations)
     {
-        $this->users->removeElement($users);
+        $this->circuitnotations->removeElement($circuitnotations);
     }
 
     /**
-     * Get users
+     * Get circuitnotations
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getUsers()
+    public function getCircuitnotations()
     {
-        return $this->users;
+        return $this->circuitnotations;
     }
 
     /**

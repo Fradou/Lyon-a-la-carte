@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Location
 {
     /**
-     * @var int
+     * @var integer
      */
     private $id;
 
@@ -104,6 +104,24 @@ class Location
      */
     private $longitude;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $notations;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $circuits;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->notations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->circuits = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -269,7 +287,7 @@ class Location
     /**
      * Get phone
      *
-     * @return string
+     * @return string 
      */
     public function getPhone()
     {
@@ -528,17 +546,38 @@ class Location
     {
         return $this->longitude;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $circuits;
 
     /**
-     * Constructor
+     * Add notations
+     *
+     * @param \CarteBundle\Entity\Notation $notations
+     * @return Location
      */
-    public function __construct()
+    public function addNotation(\CarteBundle\Entity\Notation $notations)
     {
-        $this->circuits = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->notations[] = $notations;
+
+        return $this;
+    }
+
+    /**
+     * Remove notations
+     *
+     * @param \CarteBundle\Entity\Notation $notations
+     */
+    public function removeNotation(\CarteBundle\Entity\Notation $notations)
+    {
+        $this->notations->removeElement($notations);
+    }
+
+    /**
+     * Get notations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNotations()
+    {
+        return $this->notations;
     }
 
     /**

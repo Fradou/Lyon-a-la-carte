@@ -181,4 +181,80 @@ class User
     {
         return $this->circuits;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $notations;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $circuitnotations;
+
+
+    /**
+     * Add notations
+     *
+     * @param \CarteBundle\Entity\Notation $notations
+     * @return User
+     */
+    public function addNotation(\CarteBundle\Entity\Notation $notations)
+    {
+        $this->notations[] = $notations;
+
+        return $this;
+    }
+
+    /**
+     * Remove notations
+     *
+     * @param \CarteBundle\Entity\Notation $notations
+     */
+    public function removeNotation(\CarteBundle\Entity\Notation $notations)
+    {
+        $this->notations->removeElement($notations);
+    }
+
+    /**
+     * Get notations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNotations()
+    {
+        return $this->notations;
+    }
+
+    /**
+     * Add circuitnotations
+     *
+     * @param \CarteBundle\Entity\Circuitnotation $circuitnotations
+     * @return User
+     */
+    public function addCircuitnotation(\CarteBundle\Entity\Circuitnotation $circuitnotations)
+    {
+        $this->circuitnotations[] = $circuitnotations;
+
+        return $this;
+    }
+
+    /**
+     * Remove circuitnotations
+     *
+     * @param \CarteBundle\Entity\Circuitnotation $circuitnotations
+     */
+    public function removeCircuitnotation(\CarteBundle\Entity\Circuitnotation $circuitnotations)
+    {
+        $this->circuitnotations->removeElement($circuitnotations);
+    }
+
+    /**
+     * Get circuitnotations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCircuitnotations()
+    {
+        return $this->circuitnotations;
+    }
 }

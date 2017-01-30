@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Circuitnotations list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Rating</th>
+                <th>Comment</th>
+                <th>Status</th>
+                <th>Experience</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for circuitnotation in circuitnotations %}
+            <tr>
+                <td><a href="{{ path('circuitnotation_show', { 'id': circuitnotation.id }) }}">{{ circuitnotation.id }}</a></td>
+                <td>{{ circuitnotation.rating }}</td>
+                <td>{{ circuitnotation.comment }}</td>
+                <td>{{ circuitnotation.status }}</td>
+                <td>{{ circuitnotation.experience }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('circuitnotation_show', { 'id': circuitnotation.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('circuitnotation_edit', { 'id': circuitnotation.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('circuitnotation_new') }}">Create a new circuitnotation</a>
+        </li>
+    </ul>
+{% endblock %}

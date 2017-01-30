@@ -24,9 +24,6 @@ CarteBundle\Entity\Circuit:
             type: float
             nullable: true
     manyToMany:
-        users:
-            targetEntity: fradou\UserBundle\Entity\User
-            mappedBy: circuits
         locations:
             targetEntity: CarteBundle\Entity\Location
             inversedBy: circuits
@@ -38,4 +35,8 @@ CarteBundle\Entity\Circuit:
                 inverseJoinColumns:
                     location_id:
                         referencedColumnName: id
+    oneToMany:
+        circuitnotations:
+            targetEntity: CarteBundle\Entity\Circuitnotation
+            mappedBy: circuit
     lifecycleCallbacks: {  }

@@ -10,12 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Notation
 {
     /**
-     * @var int
+     * @var integer
      */
     private $id;
 
     /**
-     * @var int
+     * @var integer
      */
     private $rating;
 
@@ -23,6 +23,16 @@ class Notation
      * @var string
      */
     private $comment;
+
+    /**
+     * @var \CarteBundle\Entity\Location
+     */
+    private $location;
+
+    /**
+     * @var \fradou\UserBundle\Entity\User
+     */
+    private $user;
 
 
     /**
@@ -79,5 +89,51 @@ class Notation
     public function getComment()
     {
         return $this->comment;
+    }
+
+    /**
+     * Set location
+     *
+     * @param \CarteBundle\Entity\Location $location
+     * @return Notation
+     */
+    public function setLocation(\CarteBundle\Entity\Location $location = null)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return \CarteBundle\Entity\Location 
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \fradou\UserBundle\Entity\User $user
+     * @return Notation
+     */
+    public function setUser(\fradou\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \fradou\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

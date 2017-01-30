@@ -25,16 +25,11 @@ fradou\UserBundle\Entity\User:
             type: string
             length: '2'
             nullable: true
-    manyToMany:
-        circuits:
-            targetEntity: CarteBundle\Entity\Circuit
-            inversedBy: users
-            joinTable:
-                name: users_circuits
-                joinColumns:
-                    user_id:
-                        referencedColumnName: id
-                inverseJoinColumns:
-                    circuit_id:
-                        referencedColumnName: id
+    oneToMany:
+        notations:
+            targetEntity: CarteBundle\Entity\Notation
+            mappedBy: user
+        circuitnotations:
+            targetEntity: CarteBundle\Entity\Circuitnotation
+            mappedBy: user
     lifecycleCallbacks: {  }

@@ -5,17 +5,17 @@ namespace CarteBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Notation
+ * Circuitnotation
  */
-class Notation
+class Circuitnotation
 {
     /**
-     * @var int
+     * @var integer
      */
     private $id;
 
     /**
-     * @var int
+     * @var integer
      */
     private $rating;
 
@@ -23,6 +23,26 @@ class Notation
      * @var string
      */
     private $comment;
+
+    /**
+     * @var string
+     */
+    private $status;
+
+    /**
+     * @var integer
+     */
+    private $experience;
+
+    /**
+     * @var \CarteBundle\Entity\Circuit
+     */
+    private $circuit;
+
+    /**
+     * @var \fradou\UserBundle\Entity\User
+     */
+    private $user;
 
 
     /**
@@ -39,7 +59,7 @@ class Notation
      * Set rating
      *
      * @param integer $rating
-     * @return Notation
+     * @return Circuitnotation
      */
     public function setRating($rating)
     {
@@ -62,7 +82,7 @@ class Notation
      * Set comment
      *
      * @param string $comment
-     * @return Notation
+     * @return Circuitnotation
      */
     public function setComment($comment)
     {
@@ -80,22 +100,58 @@ class Notation
     {
         return $this->comment;
     }
-    /**
-     * @var \CarteBundle\Entity\Circuit
-     */
-    private $circuit;
 
     /**
-     * @var \CarteBundle\Entity\Location
+     * Set status
+     *
+     * @param string $status
+     * @return Circuitnotation
      */
-    private $location;
+    public function setStatus($status)
+    {
+        $this->status = $status;
 
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set experience
+     *
+     * @param integer $experience
+     * @return Circuitnotation
+     */
+    public function setExperience($experience)
+    {
+        $this->experience = $experience;
+
+        return $this;
+    }
+
+    /**
+     * Get experience
+     *
+     * @return integer 
+     */
+    public function getExperience()
+    {
+        return $this->experience;
+    }
 
     /**
      * Set circuit
      *
      * @param \CarteBundle\Entity\Circuit $circuit
-     * @return Notation
+     * @return Circuitnotation
      */
     public function setCircuit(\CarteBundle\Entity\Circuit $circuit = null)
     {
@@ -115,38 +171,10 @@ class Notation
     }
 
     /**
-     * Set location
-     *
-     * @param \CarteBundle\Entity\Location $location
-     * @return Notation
-     */
-    public function setLocation(\CarteBundle\Entity\Location $location = null)
-    {
-        $this->location = $location;
-
-        return $this;
-    }
-
-    /**
-     * Get location
-     *
-     * @return \CarteBundle\Entity\Location 
-     */
-    public function getLocation()
-    {
-        return $this->location;
-    }
-    /**
-     * @var \fradou\UserBundle\Entity\User
-     */
-    private $user;
-
-
-    /**
      * Set user
      *
      * @param \fradou\UserBundle\Entity\User $user
-     * @return Notation
+     * @return Circuitnotation
      */
     public function setUser(\fradou\UserBundle\Entity\User $user = null)
     {
