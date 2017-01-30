@@ -35,7 +35,6 @@ class MainController extends Controller
         $repository = $this->getDoctrine()->getRepository('CarteBundle:Circuit');
         $circuitchosen = $repository->circuitSearching($data);
 
-
         return $this->render('Main/tourchoice.html.twig', array(
             'circuits' => $circuitchosen
             // ...
