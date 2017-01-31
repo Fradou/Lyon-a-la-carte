@@ -41,4 +41,15 @@ class MainController extends Controller
         ));
     }
 
+    public function circuitDisplayAction($idc)
+    {
+        $circuit = $this->getDoctrine()->getManager()->getRepository("CarteBundle:Circuit")->find($idc);
+        $locations = $circuit->getLocations();
+
+        return $this->render('Main/circuitdisplay.html.twig', array(
+            'locations' => $locations,
+        ));
+
+    }
+
 }
