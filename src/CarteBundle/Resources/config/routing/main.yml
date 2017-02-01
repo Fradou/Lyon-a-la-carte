@@ -14,3 +14,7 @@ generator:
     path:     /generator/{data}
     defaults: { _controller: CarteBundle:Main:generator }
 
+circuit_display:
+    path:     /circuitchosen/{idc}
+    defaults: { _controller: CarteBundle:Main:circuitDisplay }
+    methods:  [GET, POST]

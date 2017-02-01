@@ -612,4 +612,9 @@ class Location
     {
         return $this->circuits;
     }
+
+    public function __toString()
+    {
+        return strval($this->id);
+    }
 }

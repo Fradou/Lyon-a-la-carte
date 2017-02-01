@@ -25,9 +25,9 @@ class MainController extends Controller
     public function tourchoiceAction()
     {
         $data = [];
-      //  $data['category'] = "ALL";
+        //  $data['category'] = "ALL";
         $data['postalcode'] = ['69001', '69003', '69002'];
-     //   $data['notation'] = 1;
+        //   $data['notation'] = 1;
 
 
         /**
@@ -36,15 +36,15 @@ class MainController extends Controller
         $repository = $this->getDoctrine()->getRepository('CarteBundle:Circuit');
         $circuitchosen = $repository->circuitSearching($data);
 
-
         return $this->render('Main/tourchoice.html.twig', array(
             'circuits' => $circuitchosen
             // ...
         ));
     }
 
-    public function generatorAction($data){
-        $repository= $this->getDoctrine()->getRepository('CarteBundle:Location');
+    public function generatorAction($data)
+    {
+        $repository = $this->getDoctrine()->getRepository('CarteBundle:Location');
 
         // Research for general locations based on criter selected
         $locations = $repository->searchloca('PATRIMOINE_CULTUREL');
@@ -52,12 +52,12 @@ class MainController extends Controller
         // Get n locations in those corresponding to criters
         $locakeyselect = array_rand($locations, 4 /* $data['steps'] */);
         $circuitgen = [];
-        foreach($locakeyselect as $key => $value){
+        foreach ($locakeyselect as $key => $value) {
             $circuitgen[] = $locations[$value];
         }
 
         // Research for restaurants if option is selected
-        if (isset($data['meal'])){
+        if (isset($data['meal'])) {
             // Restaurant corresponding to search criteria
             $restaurants = $repository->searchloca('RESTAURATION');
 
@@ -66,16 +66,26 @@ class MainController extends Controller
             $restselect = $restaurants[$restkeyselect];
 
             // Get half steps of circuit
-            $stepsnb = 4 /*$data['steps']*/+1;
-            $restpos = round($stepsnb/2, 0, PHP_ROUND_HALF_UP);
+            $stepsnb = 4 /*$data['steps']*/ + 1;
+            $restpos = round($stepsnb / 2, 0, PHP_ROUND_HALF_UP);
 
             // Include restaurant at half circuit
-            array_splice($circuitgen,$restpos,0,$restselect);
+            array_splice($circuitgen, $restpos, 0, $restselect);
         }
 
-        return $this->render('Main/tourchoice.html.twig', array(
-            'circuits' => $circuitgen
+        return $this->render('Main/circuitdisplay.html.twig', array(
+            'locations' => $circuitgen
             // ...
+        ));
+    }
+
+    public function circuitDisplayAction($idc)
+    {
+        $circuit = $this->getDoctrine()->getManager()->getRepository("CarteBundle:Circuit")->find($idc);
+        $locations = $circuit->getLocations();
+
+        return $this->render('Main/circuitdisplay.html.twig', array(
+            'locations' => $locations,
         ));
     }
 
