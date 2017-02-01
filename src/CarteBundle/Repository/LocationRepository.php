@@ -2,6 +2,7 @@
 
 namespace CarteBundle\Repository;
 
+use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -12,4 +13,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class LocationRepository extends EntityRepository
 {
+    public function searchloca($category){
+        $qb = $this->createQueryBuilder('l')
+            ->select('l')
+            ->where('l.type = :category')
+            ->setParameter('category', $category)
+            ->getQuery();
+
+        return $qb->getResult();
+    }
 }

@@ -9,3 +9,8 @@ ranking:
 tourchoice:
     path:     /tourchoice
     defaults: { _controller: CarteBundle:Main:tourchoice }
+
+generator:
+    path:     /generator/{data}
+    defaults: { _controller: CarteBundle:Main:generator }
+

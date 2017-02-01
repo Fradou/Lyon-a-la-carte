@@ -220,4 +220,9 @@ class Circuit
     {
         return $this->locations;
     }
+
+    public function __toString()
+    {
+        return strval($this->id);
+    }
 }
