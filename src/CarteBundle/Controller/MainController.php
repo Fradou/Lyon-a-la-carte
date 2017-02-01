@@ -47,17 +47,17 @@ class MainController extends Controller
         $repository = $this->getDoctrine()->getRepository('CarteBundle:Location');
 
         // Research for general locations based on criter selected
-        $locations = $repository->searchloca('PATRIMOINE_CULTUREL');
+        $locations = $repository->searchloca('PATRIMOINE_CULTUREL');  // replace parameter later
 
         // Get n locations in those corresponding to criters
-        $locakeyselect = array_rand($locations, 4 /* $data['steps'] */);
+        $locakeyselect = array_rand($locations, 4 /* $data['steps'] */);  // replace parameter later
         $circuitgen = [];
         foreach ($locakeyselect as $key => $value) {
             $circuitgen[] = $locations[$value];
         }
 
         // Research for restaurants if option is selected
-        if (isset($data['meal'])) {
+        if ( true/*isset($data['meal'])*/) {                            // replace parameter later
             // Restaurant corresponding to search criteria
             $restaurants = $repository->searchloca('RESTAURATION');
 
@@ -66,11 +66,14 @@ class MainController extends Controller
             $restselect = $restaurants[$restkeyselect];
 
             // Get half steps of circuit
-            $stepsnb = 4 /*$data['steps']*/ + 1;
-            $restpos = round($stepsnb / 2, 0, PHP_ROUND_HALF_UP);
+            $stepsnb = 4 /*$data['steps']*/;                            // replace parameter later
+            $restpos = round($stepsnb / 2, 0, PHP_ROUND_HALF_DOWN);
 
             // Include restaurant at half circuit
-            array_splice($circuitgen, $restpos, 0, $restselect);
+            $circuitgen1 = array_slice($circuitgen,0,$restpos);
+            $circuitgen2 = array_slice($circuitgen, $restpos);
+            $circuitgen1[]=$restselect;
+            $circuitgen = array_merge($circuitgen1, $circuitgen2);
         }
 
         return $this->render('Main/circuitdisplay.html.twig', array(
