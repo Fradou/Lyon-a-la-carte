@@ -35,11 +35,21 @@ class MainController extends Controller
         $repository = $this->getDoctrine()->getRepository('CarteBundle:Circuit');
         $circuitchosen = $repository->circuitSearching($data);
 
-
         return $this->render('Main/tourchoice.html.twig', array(
             'circuits' => $circuitchosen
             // ...
         ));
+    }
+
+    public function circuitDisplayAction($idc)
+    {
+        $circuit = $this->getDoctrine()->getManager()->getRepository("CarteBundle:Circuit")->find($idc);
+        $locations = $circuit->getLocations();
+
+        return $this->render('Main/circuitdisplay.html.twig', array(
+            'locations' => $locations,
+        ));
+
     }
 
 }

@@ -52,7 +52,7 @@ class CircuitRepository extends EntityRepository
             $qb->having('avr >= :notation');
             $qb->setParameter('notation', $data[$searchrating]);
         }
-        $qb->innerJoin('c.notations', 'n');
+        $qb->innerJoin('c.circuitnotations', 'n');
 
 
         return $qb->getQuery()->getResult();
