@@ -5,6 +5,7 @@ namespace CarteBundle\Controller;
 use CarteBundle\CarteBundle;
 use CarteBundle\Repository\CircuitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class MainController extends Controller
 {
@@ -78,7 +79,26 @@ class MainController extends Controller
 
         return $this->render('Main/circuitdisplay.html.twig', array(
             'locations' => $circuitgen
-            // ...
+        ));
+    }
+
+    public function newGeneratorAction(Request $request){
+
+        $defaultdata = array('message' => 'Type your message here');
+        $form = $this->createForm('CarteBundle\Form\GeneratorType', $defaultdata);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($circuit);
+            $em->flush($circuit);
+
+            return $this->redirectToRoute('circuit_show', array('id' => $circuit->getId()));
+        }
+
+        return $this->render('Main/newgenerator.html.twig', array(
+            'form' => $form->createView(),
         ));
     }
 
