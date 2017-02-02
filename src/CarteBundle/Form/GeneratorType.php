@@ -29,16 +29,21 @@ class GeneratorType extends AbstractType
                 'choices_as_values' => true,
                 'expanded' => true,
                 'multiple' => false,
-                'label' => "Nombre d'étapes"
+                'label' => "Nombre d'étapes",
+                'required' => true
             ))
             ->add('category', ChoiceType::class, array(
                 'choices' => array("Toutes catégories" => "Toutes catégories", "Restaurant" =>"Restaurant" ),
                 'choices_as_values' => true,
                 'expanded' => true,
                 'multiple' => true,
-                'label' => "Catégories"
+                'label' => "Catégories",
+                'required' => true,
+                'empty_data'  => "Toutes catégories"
             ))
-            ->add('restaurant', CheckboxType::class)
+            ->add('restaurant', CheckboxType::class, array(
+                'required' => false,
+            ))
             ->add('localisation')
         ;
     }

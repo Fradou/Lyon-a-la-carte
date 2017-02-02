@@ -7,8 +7,7 @@ use CarteBundle\Repository\CircuitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class MainController extends Controller
-{
+class MainController extends Controller{
     public function indexAction()
     {
         return $this->render('Main/index.html.twig', array(
@@ -89,12 +88,13 @@ class MainController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $criterias = $form->getData();
+            $data = [];
+            foreach ($criterias as $key => $value){
+                $data[$key] = $value;
+            }
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($circuit);
-            $em->flush($circuit);
-
-            return $this->redirectToRoute('circuit_show', array('id' => $circuit->getId()));
+            return $this->redirectToRoute('generator', array('data' => $data));
         }
 
         return $this->render('Main/newgenerator.html.twig', array(
