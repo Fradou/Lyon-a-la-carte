@@ -24,6 +24,14 @@ class GeneratorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('category', ChoiceType::class, array(
+                'choices' => array("Toutes catégories" => "Toutes catégories", "RESTAURATION" =>"Gastronomie", "PATRIMOINE_CULTUREL" => "Culture" ),
+                'expanded' => true,
+                'multiple' => true,
+                'label' => "Thématique(s)",
+                'required' => true,
+                'empty_data'  => "Toutes catégories"
+            ))
             ->add('steps', ChoiceType::class, array(
                 'choices' => array(3 => 3 , 4 => 4, 5 => 5, 6 => 6 ),
                 'choices_as_values' => true,
@@ -32,19 +40,13 @@ class GeneratorType extends AbstractType
                 'label' => "Nombre d'étapes",
                 'required' => true
             ))
-            ->add('category', ChoiceType::class, array(
-                'choices' => array("Toutes catégories" => "Toutes catégories", "Restaurant" =>"Restaurant" ),
-                'choices_as_values' => true,
-                'expanded' => true,
-                'multiple' => true,
-                'label' => "Catégories",
-                'required' => true,
-                'empty_data'  => "Toutes catégories"
-            ))
             ->add('restaurant', CheckboxType::class, array(
                 'required' => false,
+                'label' => 'Dont un restaurant le midi ?',
             ))
-            ->add('localisation')
+            ->add('localisation', ChoiceType::class, array(
+                'required' => false,
+            ))
         ;
     }
 

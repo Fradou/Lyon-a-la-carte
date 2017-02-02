@@ -44,20 +44,22 @@ class MainController extends Controller{
 
     public function generatorAction($data)
     {
+        $data = unserialize($data);
+
         $repository = $this->getDoctrine()->getRepository('CarteBundle:Location');
 
         // Research for general locations based on criter selected
-        $locations = $repository->searchloca('PATRIMOINE_CULTUREL');  // replace parameter later
+        $locations = $repository->searchloca($data['category']);  // replace parameter later
 
         // Get n locations in those corresponding to criters
-        $locakeyselect = array_rand($locations, 4 /* $data['steps'] */);  // replace parameter later
+        $locakeyselect = array_rand($locations, $data['steps']);  // replace parameter later
         $circuitgen = [];
         foreach ($locakeyselect as $key => $value) {
             $circuitgen[] = $locations[$value];
         }
 
         // Research for restaurants if option is selected
-        if ( true/*isset($data['meal'])*/) {                            // replace parameter later
+        if ( $data['restaurant'] == 1 ) {                            // replace parameter later
             // Restaurant corresponding to search criteria
             $restaurants = $repository->searchloca('RESTAURATION');
 
@@ -91,8 +93,12 @@ class MainController extends Controller{
             $criterias = $form->getData();
             $data = [];
             foreach ($criterias as $key => $value){
-                $data[$key] = $value;
+                if(isset($criterias[$key])){
+                    $data[$key] = $value;
+                }
             }
+
+            $data = serialize($data);
 
             return $this->redirectToRoute('generator', array('data' => $data));
         }
