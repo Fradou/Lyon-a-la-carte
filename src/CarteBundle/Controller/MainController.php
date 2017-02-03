@@ -49,17 +49,17 @@ class MainController extends Controller{
         $repository = $this->getDoctrine()->getRepository('CarteBundle:Location');
 
         // Research for general locations based on criter selected
-        $locations = $repository->searchloca($data['category']);  // replace parameter later
+        $locations = $repository->searchloca($data['category']);
 
         // Get n locations in those corresponding to criters
-        $locakeyselect = array_rand($locations, $data['steps']);  // replace parameter later
+        $locakeyselect = array_rand($locations, $data['steps']);
         $circuitgen = [];
         foreach ($locakeyselect as $key => $value) {
             $circuitgen[] = $locations[$value];
         }
 
         // Research for restaurants if option is selected
-        if ( $data['restaurant'] == 1 ) {                            // replace parameter later
+        if ( $data['restaurant'] == 1 ) {
             // Restaurant corresponding to search criteria
             $restaurants = $repository->searchloca('RESTAURATION');
 
@@ -68,7 +68,7 @@ class MainController extends Controller{
             $restselect = $restaurants[$restkeyselect];
 
             // Get half steps of circuit
-            $stepsnb = 4 /*$data['steps']*/;                            // replace parameter later
+            $stepsnb = $data['steps'];
             $restpos = round($stepsnb / 2, 0, PHP_ROUND_HALF_DOWN);
 
             // Include restaurant at half circuit

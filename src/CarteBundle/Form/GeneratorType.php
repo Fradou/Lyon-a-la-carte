@@ -25,7 +25,7 @@ class GeneratorType extends AbstractType
     {
         $builder
             ->add('category', ChoiceType::class, array(
-                'choices' => array("Toutes catégories" => "Toutes catégories", "RESTAURATION" =>"Gastronomie", "PATRIMOINE_CULTUREL" => "Culture" ),
+                'choices' => array("ALL" => "Toutes catégories", "EQUIPEMENT" =>"Equipement", "PATRIMOINE_CULTUREL" => "Culture", "COMMERCE_ET_SERVICE" => "Commerce", "HOTELLERIE" => "Hotellerie", "HEBERGEMENT_LOCATIF" => "Hebergement locatif", "DEGUSTATION" => "Degustation", "RESTAURATION" => "Restauration" ),
                 'expanded' => true,
                 'multiple' => true,
                 'label' => "Thématique(s)",
@@ -42,7 +42,7 @@ class GeneratorType extends AbstractType
             ))
             ->add('restaurant', CheckboxType::class, array(
                 'required' => false,
-                'label' => 'Dont un restaurant le midi ?',
+                'label' => 'Un restaurant ?',
             ))
             ->add('localisation', ChoiceType::class, array(
                 'required' => false,
