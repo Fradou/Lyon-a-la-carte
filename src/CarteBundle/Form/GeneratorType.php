@@ -25,7 +25,7 @@ class GeneratorType extends AbstractType
     {
         $builder
             ->add('category', ChoiceType::class, array(
-                'choices' => array("ALL" => "Toutes catégories", "EQUIPEMENT" =>"Equipement", "PATRIMOINE_CULTUREL" => "Culture", "COMMERCE_ET_SERVICE" => "Commerce", "HOTELLERIE" => "Hotellerie", "HEBERGEMENT_LOCATIF" => "Hebergement locatif", "DEGUSTATION" => "Degustation", "RESTAURATION" => "Restauration" ),
+                'choices' => array("" => "Toutes catégories", "EQUIPEMENT" =>"Equipement", "PATRIMOINE_CULTUREL" => "Culture", "COMMERCE_ET_SERVICE" => "Commerce", "HOTELLERIE" => "Hotellerie", "HEBERGEMENT_LOCATIF" => "Hebergement locatif", "DEGUSTATION" => "Degustation", "RESTAURATION" => "Restauration" ),
                 'expanded' => true,
                 'multiple' => true,
                 'label' => "Thématique(s)",

@@ -11,7 +11,7 @@ tourchoice:
     defaults: { _controller: CarteBundle:Main:tourchoice }
 
 generator:
-    path:     /generator/{data}
+    path:     /generator
     defaults: { _controller: CarteBundle:Main:generator }
 
 circuit_display:

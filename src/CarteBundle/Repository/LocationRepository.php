@@ -13,10 +13,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class LocationRepository extends EntityRepository
 {
-    public function searchloca($category = "ALL"){
+    public function searchloca($category = null ){
         $qb = $this->createQueryBuilder('l');
         $qb->select('l');
-        if($category != "ALL"){
+        if($category != null){
             $qb->where('l.type = :category');
             $qb->setParameter('category', $category);
         }
