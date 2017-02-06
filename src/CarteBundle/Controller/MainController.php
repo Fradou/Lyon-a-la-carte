@@ -50,7 +50,7 @@ class MainController extends Controller{
         $repository = $this->getDoctrine()->getRepository('CarteBundle:Location');
 
         // Research for general locations based on criter selected
-        $locations = $repository->searchloca($data['category']);
+        $locations = $repository->searchloca($data['categories'], $data['localisations']);
 
         // Get n locations in those corresponding to criters
         $locakeyselect = array_rand($locations, $data['steps']);
@@ -62,7 +62,7 @@ class MainController extends Controller{
         // Research for restaurants if option is selected
         if ( $data['restaurant'] == 1 ) {
             // Restaurant corresponding to search criteria
-            $restaurants = $repository->searchloca('RESTAURATION');
+            $restaurants = $repository->searchloca('RESTAURATION', $data['localisations']);
 
             // Random select of one restaurant
             $restkeyselect = array_rand($restaurants, 1);

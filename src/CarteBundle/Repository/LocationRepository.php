@@ -13,12 +13,25 @@ use Doctrine\ORM\EntityRepository;
  */
 class LocationRepository extends EntityRepository
 {
-    public function searchloca($category = null ){
+    public function searchloca($category, $localisations){
         $qb = $this->createQueryBuilder('l');
         $qb->select('l');
-        if($category != null){
+        if($category != [""]){
             $qb->where('l.type = :category');
             $qb->setParameter('category', $category);
+        }
+        if($localisations != []){
+            $i=0;
+            $req="";
+            foreach($localisations as $localisation){
+                if($i>0){
+                    $req.=" OR ";
+                }
+                $req.= "l.postalcode = :local".$i;
+                $qb->setParameter('local'.$i, $localisation);
+                $i++;
+            }
+            $qb->andWhere($req);
         }
 
         return $qb->getQuery()->getResult();

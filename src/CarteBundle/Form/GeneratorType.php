@@ -24,8 +24,8 @@ class GeneratorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('category', ChoiceType::class, array(
-                'choices' => array("" => "Toutes catégories", "EQUIPEMENT" =>"Equipement", "PATRIMOINE_CULTUREL" => "Culture", "COMMERCE_ET_SERVICE" => "Commerce", "HOTELLERIE" => "Hotellerie", "HEBERGEMENT_LOCATIF" => "Hebergement locatif", "DEGUSTATION" => "Degustation", "RESTAURATION" => "Restauration" ),
+            ->add('categories', ChoiceType::class, array(
+                'choices' => array(null => "Toutes catégories", "EQUIPEMENT" =>"Equipement", "PATRIMOINE_CULTUREL" => "Culture", "COMMERCE_ET_SERVICE" => "Commerce", "HOTELLERIE" => "Hotellerie", "HEBERGEMENT_LOCATIF" => "Hebergement locatif", "DEGUSTATION" => "Degustation", "RESTAURATION" => "Restauration" ),
                 'expanded' => true,
                 'multiple' => true,
                 'label' => "Thématique(s)",
@@ -44,8 +44,11 @@ class GeneratorType extends AbstractType
                 'required' => false,
                 'label' => 'Un restaurant ?',
             ))
-            ->add('localisation', ChoiceType::class, array(
+            ->add('localisations', ChoiceType::class, array(
+                'choices' => array('69001' => '69001', '69002' => '69002', '69003' => '69003', '69004' => '69004', '69005' => '69005'),
                 'required' => false,
+                'expanded' => true,
+                'multiple' => true
             ))
         ;
     }
