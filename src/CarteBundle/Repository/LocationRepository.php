@@ -13,12 +13,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class LocationRepository extends EntityRepository
 {
-    public function searchloca($category, $localisations){
+    public function searchloca($categories, $localisations){
         $qb = $this->createQueryBuilder('l');
         $qb->select('l');
-        if($category != [""]){
-            $qb->where('l.type = :category');
-            $qb->setParameter('category', $category);
+        if($categories != [""]){
+            $i=0;
+            $req="";
+            foreach($categories as $category){
+                if($i>0){
+                    $req.=" OR ";
+                }
+                $req.= "l.type = :catego".$i;
+                $qb->setParameter('catego'.$i, $category);
+                $i++;
+            }
+            $qb->andWhere($req);
         }
         if($localisations != []){
             $i=0;
@@ -35,5 +44,13 @@ class LocationRepository extends EntityRepository
         }
 
         return $qb->getQuery()->getResult();
+    }
+
+    public function getpostalcodes(){
+        $qb = $this->createQueryBuilder('l')
+            ->select('DISTINCT l.postalcode')
+            ->orderBy('l.postalcode')
+            ->getQuery();
+        $qb->getResult();
     }
 }

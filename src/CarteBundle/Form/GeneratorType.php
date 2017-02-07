@@ -9,6 +9,8 @@
 namespace CarteBundle\Form;
 
 
+use CarteBundle\Entity\Location;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -44,10 +46,11 @@ class GeneratorType extends AbstractType
                 'required' => false,
                 'label' => 'Un restaurant ?',
             ))
-            ->add('localisations', ChoiceType::class, array(
-                'choices' => array('69001' => '69001', '69002' => '69002', '69003' => '69003', '69004' => '69004', '69005' => '69005'),
+            ->add('localisations', EntityType::class, array(
+                'class' => Location::class,
+                'property' => 'postalcode',
                 'required' => false,
-                'expanded' => true,
+                'expanded' => false,
                 'multiple' => true
             ))
         ;
