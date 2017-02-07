@@ -1,0 +1,24 @@
+circuit_index:
+    path:     /
+    defaults: { _controller: "CarteBundle:Circuit:index" }
+    methods:  GET
+
+circuit_show:
+    path:     /{id}/show
+    defaults: { _controller: "CarteBundle:Circuit:show" }
+    methods:  GET
+
+circuit_new:
+    path:     /new
+    defaults: { _controller: "CarteBundle:Circuit:new" }
+    methods:  [GET, POST]
+
+circuit_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CarteBundle:Circuit:edit" }
+    methods:  [GET, POST]
+
+circuit_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CarteBundle:Circuit:delete" }
+    methods:  DELETE

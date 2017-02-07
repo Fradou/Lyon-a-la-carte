@@ -2,27 +2,42 @@
 
 namespace CarteBundle\Controller;
 
+use CarteBundle\Repository\CircuitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class MainController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('CarteBundle:Main:index.html.twig', array(
+        return $this->render('Main/index.html.twig', array(
             // ...
         ));
     }
 
     public function rankingAction()
     {
-        return $this->render('CarteBundle:Main:ranking.html.twig', array(
+        return $this->render('Main/ranking.html.twig', array(
             // ...
         ));
     }
 
     public function tourchoiceAction()
     {
-        return $this->render('CarteBundle:Main:tourchoice.html.twig', array(
+        $data = [];
+      //  $data['category'] = "ALL";
+        $data['postalcode'] = ['69001', '69003', '69002'];
+     //   $data['notation'] = 1;
+
+
+        /**
+         * @var $repository CircuitRepository
+         */
+        $repository = $this->getDoctrine()->getRepository('CarteBundle:Circuit');
+        $circuitchosen = $repository->circuitSearching($data);
+
+
+        return $this->render('Main/tourchoice.html.twig', array(
+            'circuits' => $circuitchosen
             // ...
         ));
     }

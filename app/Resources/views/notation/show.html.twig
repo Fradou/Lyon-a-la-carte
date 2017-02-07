@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Notation</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ notation.id }}</td>
+            </tr>
+            <tr>
+                <th>Rating</th>
+                <td>{{ notation.rating }}</td>
+            </tr>
+            <tr>
+                <th>Comment</th>
+                <td>{{ notation.comment }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('notation_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('notation_edit', { 'id': notation.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

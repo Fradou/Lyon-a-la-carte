@@ -1,0 +1,31 @@
+CarteBundle\Entity\Notation:
+    type: entity
+    table: null
+    repositoryClass: CarteBundle\Repository\NotationRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        rating:
+            type: integer
+            nullable: true
+        comment:
+            type: text
+            nullable: true
+    manyToOne:
+        location:
+            targetEntity: CarteBundle\Entity\Location
+            inversedBy: notations
+            joinColumn:
+                name: location_id
+                referencedColumnName: id
+        user:
+            targetEntity: fradou\UserBundle\Entity\User
+            inversedBy: notations
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

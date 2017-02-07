@@ -1,0 +1,24 @@
+circuitnotation_index:
+    path:     /
+    defaults: { _controller: "CarteBundle:Circuitnotation:index" }
+    methods:  GET
+
+circuitnotation_show:
+    path:     /{id}/show
+    defaults: { _controller: "CarteBundle:Circuitnotation:show" }
+    methods:  GET
+
+circuitnotation_new:
+    path:     /new
+    defaults: { _controller: "CarteBundle:Circuitnotation:new" }
+    methods:  [GET, POST]
+
+circuitnotation_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CarteBundle:Circuitnotation:edit" }
+    methods:  [GET, POST]
+
+circuitnotation_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CarteBundle:Circuitnotation:delete" }
+    methods:  DELETE
