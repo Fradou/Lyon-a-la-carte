@@ -3,6 +3,7 @@
 namespace CarteBundle\Controller;
 
 use CarteBundle\CarteBundle;
+use CarteBundle\Entity\Circuit;
 use CarteBundle\Repository\CircuitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,7 +43,7 @@ class MainController extends Controller{
         ));
     }
 
-    public function generatorAction($data)
+    public function generatorAction($data, Request $request)
     {
 
       //  $data = unserialize($data);
@@ -77,6 +78,19 @@ class MainController extends Controller{
             $circuitgen2 = array_slice($circuitgen, $restpos);
             $circuitgen1[]=$restselect;
             $circuitgen = array_merge($circuitgen1, $circuitgen2);
+        }
+
+        $circuit = new Circuit();
+        $form = $this->createForm('CarteBundle\Form\CircuitType', $circuit);
+        $form->get("locations")->setData($locations);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($circuit);
+            $em->flush($circuit);
+
+            return $this->redirectToRoute('circuit_show', array('id' => $circuit->getId()));
         }
 
         return $this->render('Main/circuitdisplay.html.twig', array(
