@@ -42,7 +42,7 @@ class Circuit
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $locations;
+    private $positions;
 
     /**
      * Constructor
@@ -189,35 +189,35 @@ class Circuit
     }
 
     /**
-     * Add locations
+     * Add positions
      *
-     * @param \CarteBundle\Entity\Location $locations
+     * @param \CarteBundle\Entity\Position $positions
      * @return Circuit
      */
-    public function addLocation(\CarteBundle\Entity\Location $locations)
+    public function addPosition(\CarteBundle\Entity\Position $positions)
     {
-        $this->locations[] = $locations;
+        $this->positions[] = $positions;
 
         return $this;
     }
 
     /**
-     * Remove locations
+     * Remove positions
      *
-     * @param \CarteBundle\Entity\Location $locations
+     * @param \CarteBundle\Entity\Position $positions
      */
-    public function removeLocation(\CarteBundle\Entity\Location $locations)
+    public function removePosition(\CarteBundle\Entity\Position $positions)
     {
-        $this->locations->removeElement($locations);
+        $this->positions->removeElement($positions);
     }
 
     /**
-     * Get locations
+     * Get positions
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getLocations()
+    public function getPositions()
     {
-        return $this->locations;
+        return $this->positions;
     }
 }

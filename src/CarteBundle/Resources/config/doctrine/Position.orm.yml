@@ -1,0 +1,28 @@
+CarteBundle\Entity\Position:
+    type: entity
+    table: null
+    repositoryClass: CarteBundle\Repository\PositionRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        pos:
+            type: integer
+    manyToOne:
+        location:
+            targetEntity: CarteBundle\Entity\Location
+            inversedBy: notations
+            joinColumn:
+                name: location_id
+                referencedColumnName: id
+        circuit:
+            targetEntity: CarteBundle\Entity\Circuit
+            inversedBy: notations
+            joinColumn:
+                name: circuit_id
+                referencedColumnName: id
+
+    lifecycleCallbacks: {  }
