@@ -28,10 +28,4 @@ CarteBundle\Entity\Circuitnotation:
             joinColumn:
                 name: circuit_id
                 referencedColumnName: id
-        user:
-            targetEntity: fradou\UserBundle\Entity\User
-            inversedBy: circuitnotations
-            joinColumn:
-                name: user_id
-                referencedColumnName: id
     lifecycleCallbacks: {  }
