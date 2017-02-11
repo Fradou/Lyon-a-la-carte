@@ -1,7 +1,7 @@
-CarteBundle\Entity\Circuitnotation:
+CarteBundle\Entity\Position:
     type: entity
     table: null
-    repositoryClass: CarteBundle\Repository\CircuitnotationRepository
+    repositoryClass: CarteBundle\Repository\PositionRepository
     id:
         id:
             type: integer
@@ -9,23 +9,20 @@ CarteBundle\Entity\Circuitnotation:
             generator:
                 strategy: AUTO
     fields:
-        rating:
+        pos:
             type: integer
-            nullable: true
-        comment:
-            type: text
-            nullable: true
-        status:
-            type: string
-            length: 255
-        experience:
-            type: integer
-            nullable: true
     manyToOne:
+        location:
+            targetEntity: CarteBundle\Entity\Location
+            inversedBy: notations
+            joinColumn:
+                name: location_id
+                referencedColumnName: id
         circuit:
             targetEntity: CarteBundle\Entity\Circuit
-            inversedBy: circuitnotations
+            inversedBy: notations
             joinColumn:
                 name: circuit_id
                 referencedColumnName: id
+
     lifecycleCallbacks: {  }

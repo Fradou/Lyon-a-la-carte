@@ -112,7 +112,7 @@ class Location
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $circuits;
+    private $positions;
 
     /**
      * Constructor
@@ -581,36 +581,36 @@ class Location
     }
 
     /**
-     * Add circuits
+     * Add positions
      *
-     * @param \CarteBundle\Entity\Circuit $circuits
+     * @param \CarteBundle\Entity\Position $positions
      * @return Location
      */
-    public function addCircuit(\CarteBundle\Entity\Circuit $circuits)
+    public function addPosition(\CarteBundle\Entity\Position $positions)
     {
-        $this->circuits[] = $circuits;
+        $this->positions[] = $positions;
 
         return $this;
     }
 
     /**
-     * Remove circuits
+     * Remove positions
      *
-     * @param \CarteBundle\Entity\Circuit $circuits
+     * @param \CarteBundle\Entity\Position $positions
      */
-    public function removeCircuit(\CarteBundle\Entity\Circuit $circuits)
+    public function removePosition(\CarteBundle\Entity\Position $positions)
     {
-        $this->circuits->removeElement($circuits);
+        $this->positions->removeElement($positions);
     }
 
     /**
-     * Get circuits
+     * Get positions
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getCircuits()
+    public function getPositions()
     {
-        return $this->circuits;
+        return $this->positions;
     }
 
     public function __toString()
