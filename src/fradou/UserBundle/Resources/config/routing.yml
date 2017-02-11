@@ -1,3 +1,0 @@
-fradou_user_homepage:
-    path:     /
-    defaults: { _controller: fradouUserBundle:Default:index }

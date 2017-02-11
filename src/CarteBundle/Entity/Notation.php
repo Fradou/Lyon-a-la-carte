@@ -29,11 +29,6 @@ class Notation
      */
     private $location;
 
-    /**
-     * @var \fradou\UserBundle\Entity\User
-     */
-    private $user;
-
 
     /**
      * Get id
@@ -112,28 +107,5 @@ class Notation
     public function getLocation()
     {
         return $this->location;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \fradou\UserBundle\Entity\User $user
-     * @return Notation
-     */
-    public function setUser(\fradou\UserBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \fradou\UserBundle\Entity\User 
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 }
