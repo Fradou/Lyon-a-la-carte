@@ -10,12 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Circuitnotation
 {
     /**
-     * @var int
+     * @var integer
      */
     private $id;
 
     /**
-     * @var int
+     * @var integer
      */
     private $rating;
 
@@ -30,9 +30,19 @@ class Circuitnotation
     private $status;
 
     /**
-     * @var int
+     * @var integer
      */
     private $experience;
+
+    /**
+     * @var \CarteBundle\Entity\Circuit
+     */
+    private $circuit;
+
+    /**
+     * @var \fradou\UserBundle\Entity\User
+     */
+    private $user;
 
 
     /**
@@ -136,16 +146,6 @@ class Circuitnotation
     {
         return $this->experience;
     }
-    /**
-     * @var \CarteBundle\Entity\Circuit
-     */
-    private $circuit;
-
-    /**
-     * @var \fradou\UserBundle\Entity\User
-     */
-    private $user;
-
 
     /**
      * Set circuit

@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Circuit
 {
     /**
-     * @var int
+     * @var integer
      */
     private $id;
 
@@ -34,6 +34,24 @@ class Circuit
      */
     private $cost;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $circuitnotations;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $positions;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->circuitnotations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -136,138 +154,6 @@ class Circuit
     {
         return $this->cost;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $users;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $locations;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add users
-     *
-     * @param \fradou\UserBundle\Entity\User $users
-     * @return Circuit
-     */
-    public function addUser(\fradou\UserBundle\Entity\User $users)
-    {
-        $this->users[] = $users;
-
-        return $this;
-    }
-
-    /**
-     * Remove users
-     *
-     * @param \fradou\UserBundle\Entity\User $users
-     */
-    public function removeUser(\fradou\UserBundle\Entity\User $users)
-    {
-        $this->users->removeElement($users);
-    }
-
-    /**
-     * Get users
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
-    /**
-     * Add locations
-     *
-     * @param \CarteBundle\Entity\Location $locations
-     * @return Circuit
-     */
-    public function addLocation(\CarteBundle\Entity\Location $locations)
-    {
-        $this->locations[] = $locations;
-
-        return $this;
-    }
-
-    /**
-     * Remove locations
-     *
-     * @param \CarteBundle\Entity\Location $locations
-     */
-    public function removeLocation(\CarteBundle\Entity\Location $locations)
-    {
-        $this->locations->removeElement($locations);
-    }
-
-    /**
-     * Get locations
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getLocations()
-    {
-        return $this->locations;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $notations;
-
-
-    /**
-     * Add notations
-     *
-     * @param \CarteBundle\Entity\Notation $notations
-     * @return Circuit
-     */
-    public function addNotation(\CarteBundle\Entity\Notation $notations)
-    {
-        $this->notations[] = $notations;
-
-        return $this;
-    }
-
-    /**
-     * Remove notations
-     *
-     * @param \CarteBundle\Entity\Notation $notations
-     */
-    public function removeNotation(\CarteBundle\Entity\Notation $notations)
-    {
-        $this->notations->removeElement($notations);
-    }
-
-    /**
-     * Get notations
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getNotations()
-    {
-        return $this->notations;
-    }
-
-    public function __toString()
-    {
-        return strval($this->id);
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $circuitnotations;
-
 
     /**
      * Add circuitnotations
@@ -300,5 +186,38 @@ class Circuit
     public function getCircuitnotations()
     {
         return $this->circuitnotations;
+    }
+
+    /**
+     * Add positions
+     *
+     * @param \CarteBundle\Entity\Position $positions
+     * @return Circuit
+     */
+    public function addPosition(\CarteBundle\Entity\Position $positions)
+    {
+        $this->positions[] = $positions;
+
+        return $this;
+    }
+
+    /**
+     * Remove positions
+     *
+     * @param \CarteBundle\Entity\Position $positions
+     */
+    public function removePosition(\CarteBundle\Entity\Position $positions)
+    {
+        $this->positions->removeElement($positions);
+    }
+
+    /**
+     * Get positions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPositions()
+    {
+        return $this->positions;
     }
 }

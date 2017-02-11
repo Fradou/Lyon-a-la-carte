@@ -22,10 +22,4 @@ CarteBundle\Entity\Notation:
             joinColumn:
                 name: location_id
                 referencedColumnName: id
-        user:
-            targetEntity: fradou\UserBundle\Entity\User
-            inversedBy: notations
-            joinColumn:
-                name: user_id
-                referencedColumnName: id
     lifecycleCallbacks: {  }
