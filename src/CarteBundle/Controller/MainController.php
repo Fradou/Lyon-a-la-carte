@@ -45,9 +45,6 @@ class MainController extends Controller{
 
     public function generatorAction($data, Request $request)
     {
-
-      //  $data = unserialize($data);
-
         $repository = $this->getDoctrine()->getRepository('CarteBundle:Location');
 
         // Research for general locations based on criter selected
@@ -113,14 +110,11 @@ class MainController extends Controller{
                 }
             }
 
-          //  $data = serialize($data);
-
             $response = $this->forward('CarteBundle:Main:generator', array(
                 'data'  => $data
             ));
 
             return $response;
-           // return $this->redirectToRoute('generator', array('data' => $data));
         }
 
         return $this->render('Main/newgenerator.html.twig', array(
