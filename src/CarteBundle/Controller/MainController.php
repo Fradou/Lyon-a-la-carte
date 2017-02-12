@@ -60,7 +60,7 @@ class MainController extends Controller{
         // Research for restaurants if option is selected
         if ( $data['restaurant'] == 1 ) {
             // Restaurant corresponding to search criteria
-            $restaurants = $repository->searchloca('RESTAURATION', $data['localisations']);
+            $restaurants = $repository->searchloca(['RESTAURATION'], $data['localisations']);
 
             // Random select of one restaurant
             $restkeyselect = array_rand($restaurants, 1);

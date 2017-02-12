@@ -16,28 +16,28 @@ class LocationRepository extends EntityRepository
     public function searchloca($categories, $localisations){
         $qb = $this->createQueryBuilder('l');
         $qb->select('l');
-        if($categories != [""]){
+        if(isset($categories) && $categories != [""]){
             $i=0;
-            $req="";
+            $req='';
             foreach($categories as $category){
                 if($i>0){
-                    $req.=" OR ";
+                    $req.=' OR ';
                 }
-                $req.= "l.type = :catego".$i;
+                $req.= 'l.type = :catego'.$i;
                 $qb->setParameter('catego'.$i, $category);
                 $i++;
             }
-            $qb->andWhere($req);
+            $qb->where($req);
         }
-        if($localisations != []){
+        if(isset($localisations) && $localisations != []){
             $i=0;
-            $req="";
+            $req='';
             foreach($localisations as $localisation){
                 if($i>0){
-                    $req.=" OR ";
+                    $req.=' OR ';
                 }
-                $req.= "l.postalcode = :local".$i;
-                $qb->setParameter('local'.$i, $localisation);
+                $req.= 'l.postalcode = :local'.$i;
+                $qb->setParameter('local'.$i, $localisation->getPostalcode());
                 $i++;
             }
             $qb->andWhere($req);
@@ -45,6 +45,7 @@ class LocationRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
 
     public function getpostalcodes(){
         $qb = $this->createQueryBuilder('l')

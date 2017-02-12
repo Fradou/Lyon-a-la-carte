@@ -10,6 +10,7 @@ namespace CarteBundle\Form;
 
 
 use CarteBundle\Entity\Location;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -48,9 +49,12 @@ class GeneratorType extends AbstractType
             ))
             ->add('localisations', EntityType::class, array(
                 'class' => Location::class,
+                'query_builder' => function(EntityRepository $er) {return $er->createQueryBuilder('l')
+                    ->groupBy('l.postalcode')
+                    ->orderBy('l.postalcode');},
                 'property' => 'postalcode',
                 'required' => false,
-                'expanded' => false,
+                'expanded' => true,
                 'multiple' => true
             ))
         ;
