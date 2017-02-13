@@ -78,21 +78,19 @@ class MainController extends Controller{
             $circuitgen = array_merge($circuitgen1, $circuitgen2);
         }
 
-        $i=1;
-        $positions=[];
-        $em = $this->getDoctrine()->getManager();
-        foreach ($circuitgen as $circuitsteps){
-            $position = new Position();
-            $position->setPos($i);
-            $position->setLocation($circuitsteps);
-            $em->persist($position);
-            $positions[] = $position;
-            $i++;
-        }
 
         $circuit = new Circuit();
+        // Create collection of positions to include in circuittype
+        $i=1;
+
+        foreach ($circuitgen as $circuitsteps){
+            $pos = new Position();
+            $pos->setPos($i);
+            $pos->setLocation($circuitsteps);
+            $circuit->addPosition($pos);
+            $i++;
+        }
         $form = $this->createForm('CarteBundle\Form\CircuitType', $circuit);
-        $form->get("positions")->setData($positions);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -104,7 +102,8 @@ class MainController extends Controller{
         }
 
         return $this->render('Main/circuitdisplay.html.twig', array(
-            'locations' => $circuitgen
+            'locations' => $circuitgen,
+            'form' => $form->createView()
         ));
     }
 

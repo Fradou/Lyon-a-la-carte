@@ -39,11 +39,6 @@ class Circuitnotation
      */
     private $circuit;
 
-    /**
-     * @var \fradou\UserBundle\Entity\User
-     */
-    private $user;
-
 
     /**
      * Get id
@@ -168,28 +163,5 @@ class Circuitnotation
     public function getCircuit()
     {
         return $this->circuit;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \fradou\UserBundle\Entity\User $user
-     * @return Circuitnotation
-     */
-    public function setUser(\fradou\UserBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \fradou\UserBundle\Entity\User 
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 }

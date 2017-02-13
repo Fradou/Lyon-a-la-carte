@@ -10,14 +10,24 @@ use Doctrine\ORM\Mapping as ORM;
 class Position
 {
     /**
-     * @var int
+     * @var integer
      */
     private $id;
 
     /**
-     * @var int
+     * @var integer
      */
     private $pos;
+
+    /**
+     * @var \CarteBundle\Entity\Location
+     */
+    private $location;
+
+    /**
+     * @var \CarteBundle\Entity\Circuit
+     */
+    private $circuit;
 
 
     /**
@@ -52,16 +62,6 @@ class Position
     {
         return $this->pos;
     }
-    /**
-     * @var \CarteBundle\Entity\Location
-     */
-    private $location;
-
-    /**
-     * @var \fradou\UserBundle\Entity\Circuit
-     */
-    private $circuit;
-
 
     /**
      * Set location
@@ -89,10 +89,10 @@ class Position
     /**
      * Set circuit
      *
-     * @param \fradou\UserBundle\Entity\Circuit $circuit
+     * @param \CarteBundle\Entity\Circuit $circuit
      * @return Position
      */
-    public function setCircuit(\fradou\UserBundle\Entity\Circuit $circuit = null)
+    public function setCircuit(\CarteBundle\Entity\Circuit $circuit = null)
     {
         $this->circuit = $circuit;
 
@@ -102,7 +102,7 @@ class Position
     /**
      * Get circuit
      *
-     * @return \fradou\UserBundle\Entity\Circuit 
+     * @return \CarteBundle\Entity\Circuit 
      */
     public function getCircuit()
     {
