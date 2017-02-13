@@ -4,6 +4,7 @@ namespace CarteBundle\Controller;
 
 use CarteBundle\CarteBundle;
 use CarteBundle\Entity\Circuit;
+use CarteBundle\Entity\Position;
 use CarteBundle\Repository\CircuitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -77,9 +78,21 @@ class MainController extends Controller{
             $circuitgen = array_merge($circuitgen1, $circuitgen2);
         }
 
+        $i=1;
+        $positions=[];
+        $em = $this->getDoctrine()->getManager();
+        foreach ($circuitgen as $circuitsteps){
+            $position = new Position();
+            $position->setPos($i);
+            $position->setLocation($circuitsteps);
+            $em->persist($position);
+            $positions[] = $position;
+            $i++;
+        }
+
         $circuit = new Circuit();
         $form = $this->createForm('CarteBundle\Form\CircuitType', $circuit);
-        $form->get("locations")->setData($locations);
+        $form->get("positions")->setData($positions);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
