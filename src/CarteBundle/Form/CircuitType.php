@@ -32,7 +32,8 @@ class CircuitType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'CarteBundle\Entity\Circuit'
+            'data_class' => 'CarteBundle\Entity\Circuit',
+        //    'cascade_validation' => true,
         ));
     }
 

@@ -13,7 +13,7 @@ class PositionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('pos')->add('location')->add('circuit')        ;
+        $builder->add('pos')->add('location'); //->add('circuit')
     }
     
     /**

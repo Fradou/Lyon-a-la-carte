@@ -29,5 +29,6 @@ CarteBundle\Entity\Circuit:
             mappedBy: circuit
         positions:
             targetEntity: CarteBundle\Entity\Position
-            mappedBy: position
+            cascade: [persist]
+            mappedBy: circuit
     lifecycleCallbacks: {  }
