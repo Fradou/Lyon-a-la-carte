@@ -95,6 +95,8 @@ class MainController extends Controller{
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $recup = $form->getData();
+            var_dump($recup);
             $em->persist($circuit);
             $em->flush($circuit);
 
@@ -122,9 +124,8 @@ class MainController extends Controller{
                 }
             }
 
-            $response = $this->forward('CarteBundle:Main:generator', array(
-                'data'  => $data
-            ));
+
+            $response = $this->forward('CarteBundle:Circuit:new');
 
             return $response;
         }
