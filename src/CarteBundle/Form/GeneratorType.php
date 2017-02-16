@@ -28,7 +28,7 @@ class GeneratorType extends AbstractType
     {
         $builder
             ->add('categories', ChoiceType::class, array(
-                'choices' => array(null => "Toutes catégories", "EQUIPEMENT" =>"Equipement", "PATRIMOINE_CULTUREL" => "Culture", "COMMERCE_ET_SERVICE" => "Commerce", "HOTELLERIE" => "Hotellerie", "HEBERGEMENT_LOCATIF" => "Hebergement locatif", "DEGUSTATION" => "Degustation", "RESTAURATION" => "Restauration" ),
+                'choices' => $options['types'],
                 'expanded' => true,
                 'multiple' => true,
                 'label' => "Thématique(s)",
@@ -47,12 +47,8 @@ class GeneratorType extends AbstractType
                 'required' => false,
                 'label' => 'Un restaurant ?',
             ))
-            ->add('localisations', EntityType::class, array(
-                'class' => Location::class,
-                'query_builder' => function(EntityRepository $er) {return $er->createQueryBuilder('l')
-                    ->groupBy('l.postalcode')
-                    ->orderBy('l.postalcode');},
-                'property' => 'postalcode',
+            ->add('localisations', ChoiceType::class, array(
+                'choices' => $options['postalcodes'],
                 'required' => false,
                 'expanded' => true,
                 'multiple' => true
@@ -66,6 +62,8 @@ class GeneratorType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
+            'types' => null,
+            'postalcodes' => null,
         ));
     }
 

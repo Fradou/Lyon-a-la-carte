@@ -11,7 +11,7 @@ tourchoice:
     defaults: { _controller: CarteBundle:Main:tourchoice }
 
 generator:
-    path:     /generator
+    path:     /generator/{data}
     defaults: { _controller: CarteBundle:Main:generator }
     methods:  [GET, POST]
 

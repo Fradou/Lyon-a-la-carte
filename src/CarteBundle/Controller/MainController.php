@@ -4,6 +4,7 @@ namespace CarteBundle\Controller;
 
 use CarteBundle\CarteBundle;
 use CarteBundle\Entity\Circuit;
+use CarteBundle\Entity\Location;
 use CarteBundle\Entity\Position;
 use CarteBundle\Repository\CircuitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -46,6 +47,8 @@ class MainController extends Controller{
 
     public function generatorAction($data, Request $request)
     {
+        $data = json_decode($data, true);
+
         $repository = $this->getDoctrine()->getRepository('CarteBundle:Location');
 
         // Research for general locations based on criter selected
@@ -109,10 +112,24 @@ class MainController extends Controller{
         ));
     }
 
-    public function newGeneratorAction(Request $request){
+    public function newGeneratorAction(Request $request)
+    {
+
+        $postalcodes = [];
+        $postal = $this->getDoctrine()->getRepository("CarteBundle:Location")->getAllPostalCodes();
+        $types = [];
+        $typ = $this->getDoctrine()->getRepository("CarteBundle:Location")->getAllTypes();
+
+        foreach ($postal as $value){
+            $postalcodes[$value['postalcode']] = $value['postalcode'];
+        }
+
+        foreach ($typ as $value){
+            $types[$value['type']] = $value['type'];
+        }
 
         $defaultdata = array('message' => 'Type your message here');
-        $form = $this->createForm('CarteBundle\Form\GeneratorType', $defaultdata);
+        $form = $this->createForm('CarteBundle\Form\GeneratorType', null, array('postalcodes'=>$postalcodes, 'types' => $types));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -125,9 +142,12 @@ class MainController extends Controller{
             }
 
 
-            $response = $this->forward('CarteBundle:Circuit:new');
+           /* $response = $this->forward('CarteBundle:Circuit:new');
 
-            return $response;
+            return $response; */
+            $data = json_encode($data);
+
+            return $this->redirectToRoute('generator', array('data' => $data));
         }
 
         return $this->render('Main/newgenerator.html.twig', array(

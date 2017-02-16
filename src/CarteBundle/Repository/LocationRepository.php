@@ -37,7 +37,7 @@ class LocationRepository extends EntityRepository
                     $req.=' OR ';
                 }
                 $req.= 'l.postalcode = :local'.$i;
-                $qb->setParameter('local'.$i, $localisation->getPostalcode());
+                $qb->setParameter('local'.$i, $localisation);
                 $i++;
             }
             $qb->andWhere($req);
@@ -47,11 +47,19 @@ class LocationRepository extends EntityRepository
     }
 
 
-    public function getpostalcodes(){
+    public function getAllPostalCodes(){
         $qb = $this->createQueryBuilder('l')
             ->select('DISTINCT l.postalcode')
             ->orderBy('l.postalcode')
             ->getQuery();
-        $qb->getResult();
+        return $qb->getResult();
+    }
+
+    public function getAllTypes(){
+        $qb = $this->createQueryBuilder('l')
+            ->select('DISTINCT l.type')
+            ->orderBy('l.type')
+            ->getQuery();
+        return $qb->getResult();
     }
 }
