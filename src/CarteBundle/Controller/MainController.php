@@ -90,7 +90,8 @@ class MainController extends Controller{
             $pos = new Position();
             $pos->setPos($i);
             $pos->setLocation($circuitsteps);
-            $circuit->addPosition($pos);
+            $pos->setCircuit($circuit);
+            $circuit->getPositions()->add($pos);
             $i++;
         }
         $form = $this->createForm('CarteBundle\Form\CircuitType', $circuit);
@@ -103,7 +104,7 @@ class MainController extends Controller{
             $em->persist($circuit);
             $em->flush($circuit);
 
-            return $this->redirectToRoute('circuit_show', array('id' => $circuit->getId()));
+          //  return $this->redirectToRoute('circuit_show', array('id' => $circuit->getId()));
         }
 
         return $this->render('Main/circuitdisplay.html.twig', array(
@@ -128,7 +129,6 @@ class MainController extends Controller{
             $types[$value['type']] = $value['type'];
         }
 
-        $defaultdata = array('message' => 'Type your message here');
         $form = $this->createForm('CarteBundle\Form\GeneratorType', null, array('postalcodes'=>$postalcodes, 'types' => $types));
         $form->handleRequest($request);
 
@@ -141,10 +141,6 @@ class MainController extends Controller{
                 }
             }
 
-
-           /* $response = $this->forward('CarteBundle:Circuit:new');
-
-            return $response; */
             $data = json_encode($data);
 
             return $this->redirectToRoute('generator', array('data' => $data));

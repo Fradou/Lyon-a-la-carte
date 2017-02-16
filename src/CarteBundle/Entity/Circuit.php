@@ -50,7 +50,7 @@ class Circuit
     public function __construct()
     {
         $this->circuitnotations = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->positions = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -191,12 +191,12 @@ class Circuit
     /**
      * Add positions
      *
-     * @param \CarteBundle\Entity\Position $positions
+     * @param \CarteBundle\Entity\Position $position
      * @return Circuit
      */
-    public function addPosition(\CarteBundle\Entity\Position $positions)
+    public function addPosition(\CarteBundle\Entity\Position $position)
     {
-        $this->positions[] = $positions;
+        $this->positions->add($position);
 
         return $this;
     }
@@ -204,11 +204,11 @@ class Circuit
     /**
      * Remove positions
      *
-     * @param \CarteBundle\Entity\Position $positions
+     * @param \CarteBundle\Entity\Position $position
      */
-    public function removePosition(\CarteBundle\Entity\Position $positions)
+    public function removePosition(\CarteBundle\Entity\Position $position)
     {
-        $this->positions->removeElement($positions);
+        $this->positions->removeElement($position);
     }
 
     /**
