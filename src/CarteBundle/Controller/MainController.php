@@ -9,6 +9,7 @@ use CarteBundle\Entity\Position;
 use CarteBundle\Repository\CircuitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class MainController extends Controller{
     public function indexAction()
@@ -45,9 +46,10 @@ class MainController extends Controller{
         ));
     }
 
-    public function generatorAction($data, Request $request)
+    public function generatorAction(Request $request)
     {
-        $data = json_decode($data, true);
+        $session = new Session();
+        $data =$session->get('searchParam');
 
         $repository = $this->getDoctrine()->getRepository('CarteBundle:Location');
 
@@ -115,22 +117,23 @@ class MainController extends Controller{
 
     public function newGeneratorAction(Request $request)
     {
-
+        // Get list of all postal code in locations and transform it for form format
         $postalcodes = [];
         $postal = $this->getDoctrine()->getRepository("CarteBundle:Location")->getAllPostalCodes();
-        $types = [];
-        $typ = $this->getDoctrine()->getRepository("CarteBundle:Location")->getAllTypes();
-
         foreach ($postal as $value){
             $postalcodes[$value['postalcode']] = $value['postalcode'];
         }
 
+        // Get list of all types of locations and transform it for form format
+        $types = [];
+        $typ = $this->getDoctrine()->getRepository("CarteBundle:Location")->getAllTypes();
         foreach ($typ as $value){
             $types[$value['type']] = $value['type'];
         }
 
         $form = $this->createForm('CarteBundle\Form\GeneratorType', null, array('postalcodes'=>$postalcodes, 'types' => $types));
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $criterias = $form->getData();
@@ -141,9 +144,19 @@ class MainController extends Controller{
                 }
             }
 
-            $data = json_encode($data);
+            $session = new Session();
+            $session->set('searchParam', $data);
 
-            return $this->redirectToRoute('generator', array('data' => $data));
+            return $this->redirectToRoute('generator');
+        }
+
+        // Checking if there is already some search parameter registered in session and load it into form if exists
+        $session = new Session();
+        if($session->get('searchParam')!= null){
+            $field = $session->get('searchParam');
+            foreach($field as $key=>$value){
+            $form->get($key)->setData($field[$key]);
+            }
         }
 
         return $this->render('Main/newgenerator.html.twig', array(
