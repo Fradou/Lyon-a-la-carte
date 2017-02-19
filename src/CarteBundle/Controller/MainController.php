@@ -48,7 +48,7 @@ class MainController extends Controller{
 
     public function generatorAction(Request $request)
     {
-        $session = new Session();
+        $session = $request->getSession();
         $data =$session->get('searchParam');
 
         $repository = $this->getDoctrine()->getRepository('CarteBundle:Location');
@@ -144,14 +144,14 @@ class MainController extends Controller{
                 }
             }
 
-            $session = new Session();
+            $session = $request->getSession();
             $session->set('searchParam', $data);
 
             return $this->redirectToRoute('generator');
         }
 
         // Checking if there is already some search parameter registered in session and load it into form if exists
-        $session = new Session();
+        $session = $request->getSession();
         if($session->get('searchParam')!= null){
             $field = $session->get('searchParam');
             foreach($field as $key=>$value){
