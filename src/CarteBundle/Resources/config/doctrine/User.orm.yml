@@ -1,0 +1,16 @@
+CarteBundle\Entity\User:
+    type: entity
+    table: null
+    repositoryClass: CarteBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        username:
+            type: string
+            length: 255
+            unique: true
+    lifecycleCallbacks: {  }
