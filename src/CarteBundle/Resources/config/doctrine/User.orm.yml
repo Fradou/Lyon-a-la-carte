@@ -13,4 +13,15 @@ CarteBundle\Entity\User:
             type: string
             length: 255
             unique: true
+    oneToMany:
+        circuitnotations:
+            targetEntity: CarteBundle\Entity\Circuitnotation
+            mappedBy: user
+    manyToOne:
+        position:
+          targetEntity: CarteBundle\Entity\Position
+          inversedBy: users
+          joinColumn:
+            name: position_id
+            referencedColumnName: id
     lifecycleCallbacks: {  }

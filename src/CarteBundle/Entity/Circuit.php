@@ -45,6 +45,11 @@ class Circuit
     private $positions;
 
     /**
+     * @var integer
+     */
+    private $steps;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -214,7 +219,7 @@ class Circuit
     /**
      * Get positions
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPositions()
     {
@@ -224,5 +229,28 @@ class Circuit
     public function __toString()
     {
         return strval($this->id);
+    }
+
+    /**
+     * Set steps
+     *
+     * @param integer $steps
+     * @return Circuit
+     */
+    public function setSteps($steps)
+    {
+        $this->steps = $steps;
+
+        return $this;
+    }
+
+    /**
+     * Get steps
+     *
+     * @return integer 
+     */
+    public function getSteps()
+    {
+        return $this->steps;
     }
 }

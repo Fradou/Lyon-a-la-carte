@@ -23,6 +23,8 @@ CarteBundle\Entity\Circuit:
         cost:
             type: float
             nullable: true
+        steps:
+            type: integer
     oneToMany:
         circuitnotations:
             targetEntity: CarteBundle\Entity\Circuitnotation

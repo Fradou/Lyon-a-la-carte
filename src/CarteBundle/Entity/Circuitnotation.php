@@ -164,4 +164,60 @@ class Circuitnotation
     {
         return $this->circuit;
     }
+    /**
+     * @var \DateTime
+     */
+    private $completion;
+
+    /**
+     * @var \CarteBundle\Entity\User
+     */
+    private $user;
+
+
+    /**
+     * Set completion
+     *
+     * @param \DateTime $completion
+     * @return Circuitnotation
+     */
+    public function setCompletion($completion)
+    {
+        $this->completion = $completion;
+
+        return $this;
+    }
+
+    /**
+     * Get completion
+     *
+     * @return \DateTime 
+     */
+    public function getCompletion()
+    {
+        return $this->completion;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \CarteBundle\Entity\User $user
+     * @return Circuitnotation
+     */
+    public function setUser(\CarteBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \CarteBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }
