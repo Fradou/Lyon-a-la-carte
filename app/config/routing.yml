@@ -1,7 +1,3 @@
-fradou_user:
-    resource: "@fradouUserBundle/Resources/config/routing.yml"
-    prefix:   /
-
 carte:
     resource: "@CarteBundle/Resources/config/routing.yml"
     prefix:   /

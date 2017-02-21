@@ -5,10 +5,9 @@
 {% block body %}
 <h1>Welcome to the Main:ranking page</h1>
     <div>
-        {% set i=0 %}
         {% for location in locations %}
             <div class="step">
-                <h2>{{ location.name }}</h2>
+                <h2>{{ location.name }} - {{ location.type }}</h2>
                 <h3>{{ location.typeDetail }}</h3>
                 <div class="coordo">
                     Adresse :<br>
@@ -48,4 +47,14 @@
         {% endfor %}
 
     </div>
+
+    {% if form %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+<input type="submit" value="Create" />
+{{ form_end(form) }}
+
+        <a href="{{ path('generatorform') }}">Changer mes critères</a>
+
+{% endif %}
 {% endblock %}
