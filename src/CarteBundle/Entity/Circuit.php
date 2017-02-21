@@ -42,7 +42,12 @@ class Circuit
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $locations;
+    private $positions;
+
+    /**
+     * @var integer
+     */
+    private $steps;
 
     /**
      * Constructor
@@ -50,7 +55,7 @@ class Circuit
     public function __construct()
     {
         $this->circuitnotations = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->positions = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -189,35 +194,63 @@ class Circuit
     }
 
     /**
-     * Add locations
+     * Add positions
      *
-     * @param \CarteBundle\Entity\Location $locations
+     * @param \CarteBundle\Entity\Position $position
      * @return Circuit
      */
-    public function addLocation(\CarteBundle\Entity\Location $locations)
+    public function addPosition(\CarteBundle\Entity\Position $position)
     {
-        $this->locations[] = $locations;
+        $this->positions->add($position);
 
         return $this;
     }
 
     /**
-     * Remove locations
+     * Remove positions
      *
-     * @param \CarteBundle\Entity\Location $locations
+     * @param \CarteBundle\Entity\Position $position
      */
-    public function removeLocation(\CarteBundle\Entity\Location $locations)
+    public function removePosition(\CarteBundle\Entity\Position $position)
     {
-        $this->locations->removeElement($locations);
+        $this->positions->removeElement($position);
     }
 
     /**
-     * Get locations
+     * Get positions
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getLocations()
+    public function getPositions()
     {
-        return $this->locations;
+        return $this->positions;
+    }
+
+    public function __toString()
+    {
+        return strval($this->id);
+    }
+
+    /**
+     * Set steps
+     *
+     * @param integer $steps
+     * @return Circuit
+     */
+    public function setSteps($steps)
+    {
+        $this->steps = $steps;
+
+        return $this;
+    }
+
+    /**
+     * Get steps
+     *
+     * @return integer 
+     */
+    public function getSteps()
+    {
+        return $this->steps;
     }
 }

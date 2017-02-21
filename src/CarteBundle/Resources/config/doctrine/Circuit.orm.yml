@@ -23,20 +23,14 @@ CarteBundle\Entity\Circuit:
         cost:
             type: float
             nullable: true
-    manyToMany:
-        locations:
-            targetEntity: CarteBundle\Entity\Location
-            inversedBy: circuits
-            joinTable:
-                name: circuits_locations
-                joinColumns:
-                    circuit_id:
-                        referencedColumnName: id
-                inverseJoinColumns:
-                    location_id:
-                        referencedColumnName: id
+        steps:
+            type: integer
     oneToMany:
         circuitnotations:
             targetEntity: CarteBundle\Entity\Circuitnotation
+            mappedBy: circuit
+        positions:
+            targetEntity: CarteBundle\Entity\Position
+            cascade: [persist]
             mappedBy: circuit
     lifecycleCallbacks: {  }

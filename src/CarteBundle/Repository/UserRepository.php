@@ -1,6 +1,6 @@
 <?php
 
-namespace fradou\UserBundle\Repository;
+namespace CarteBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

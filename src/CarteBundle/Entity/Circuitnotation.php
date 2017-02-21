@@ -39,11 +39,6 @@ class Circuitnotation
      */
     private $circuit;
 
-    /**
-     * @var \fradou\UserBundle\Entity\User
-     */
-    private $user;
-
 
     /**
      * Get id
@@ -169,14 +164,47 @@ class Circuitnotation
     {
         return $this->circuit;
     }
+    /**
+     * @var \DateTime
+     */
+    private $completion;
+
+    /**
+     * @var \CarteBundle\Entity\User
+     */
+    private $user;
+
+
+    /**
+     * Set completion
+     *
+     * @param \DateTime $completion
+     * @return Circuitnotation
+     */
+    public function setCompletion($completion)
+    {
+        $this->completion = $completion;
+
+        return $this;
+    }
+
+    /**
+     * Get completion
+     *
+     * @return \DateTime 
+     */
+    public function getCompletion()
+    {
+        return $this->completion;
+    }
 
     /**
      * Set user
      *
-     * @param \fradou\UserBundle\Entity\User $user
+     * @param \CarteBundle\Entity\User $user
      * @return Circuitnotation
      */
-    public function setUser(\fradou\UserBundle\Entity\User $user = null)
+    public function setUser(\CarteBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -186,7 +214,7 @@ class Circuitnotation
     /**
      * Get user
      *
-     * @return \fradou\UserBundle\Entity\User 
+     * @return \CarteBundle\Entity\User 
      */
     public function getUser()
     {

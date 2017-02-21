@@ -15,12 +15,11 @@ CarteBundle\Entity\Circuitnotation:
         comment:
             type: text
             nullable: true
-        status:
-            type: string
-            length: 255
         experience:
             type: integer
             nullable: true
+        completion:
+            type: date
     manyToOne:
         circuit:
             targetEntity: CarteBundle\Entity\Circuit
@@ -29,7 +28,7 @@ CarteBundle\Entity\Circuitnotation:
                 name: circuit_id
                 referencedColumnName: id
         user:
-            targetEntity: fradou\UserBundle\Entity\User
+            targetEntity: CarteBundle\Entity\User
             inversedBy: circuitnotations
             joinColumn:
                 name: user_id

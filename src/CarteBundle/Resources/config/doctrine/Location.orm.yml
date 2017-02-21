@@ -77,12 +77,11 @@ CarteBundle\Entity\Location:
             type: string
             length: 255
             nullable: true
-    manyToMany:
-        circuits:
-            targetEntity: CarteBundle\Entity\Circuit
-            mappedBy: locations
     oneToMany:
         notations:
             targetEntity: CarteBundle\Entity\Notation
+            mappedBy: location
+        positions:
+            targetEntity: CarteBundle\Entity\Position
             mappedBy: location
     lifecycleCallbacks: {  }

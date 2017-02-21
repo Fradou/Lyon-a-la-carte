@@ -11,3 +11,8 @@
 /bin/
 /composer.phar
 node_modules
+Divers.txt
+/web/css/*
+/web/js/*
+/web/img/*
+!.gitkeep
