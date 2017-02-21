@@ -63,6 +63,11 @@ class MainController extends Controller{
             $circuitgen[] = $locations[$value];
         }
 
+        // Initiate circuit and set number of steps
+        $circuit = new Circuit();
+        $circuit->setSteps($data['steps']);
+
+
         // Research for restaurants if option is selected
         if ( $data['restaurant'] == 1 ) {
             // Restaurant corresponding to search criteria
@@ -81,13 +86,13 @@ class MainController extends Controller{
             $circuitgen2 = array_slice($circuitgen, $restpos);
             $circuitgen1[]=$restselect;
             $circuitgen = array_merge($circuitgen1, $circuitgen2);
+
+            // Also update circuit steps to include restaurant
+            $circuit->setSteps($data['steps']+1);
         }
 
-
-        $circuit = new Circuit();
         // Create collection of positions to include in circuittype
         $i=1;
-
         foreach ($circuitgen as $circuitsteps){
             $pos = new Position();
             $pos->setPos($i);
@@ -96,17 +101,16 @@ class MainController extends Controller{
             $circuit->getPositions()->add($pos);
             $i++;
         }
+
         $form = $this->createForm('CarteBundle\Form\CircuitType', $circuit);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $recup = $form->getData();
-            var_dump($recup);
             $em->persist($circuit);
             $em->flush($circuit);
 
-          //  return $this->redirectToRoute('circuit_show', array('id' => $circuit->getId()));
+            return $this->redirectToRoute('circuit_show', array('id' => $circuit->getId()));
         }
 
         return $this->render('Main/circuitdisplay.html.twig', array(

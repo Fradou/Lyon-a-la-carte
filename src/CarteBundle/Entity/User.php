@@ -19,6 +19,15 @@ class User
      */
     private $username;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $circuitnotations;
+
+    /**
+     * @var \CarteBundle\Entity\Position
+     */
+    private $position;
 
     /**
      * Get id
@@ -52,15 +61,6 @@ class User
     {
         return $this->username;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $circuitnotations;
-
-    /**
-     * @var \CarteBundle\Entity\Position
-     */
-    private $position;
 
     /**
      * Constructor
