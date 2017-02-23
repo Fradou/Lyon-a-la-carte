@@ -2,8 +2,9 @@
 
 namespace CarteBundle\Form;
 
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use CarteBundle\Entity\Position;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,16 +15,15 @@ class CircuitType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('name')
+        $builder->add('name')
             ->add('category')
             ->add('description')
             ->add('cost')
-            ->add('locations', EntityType::class, array(
-                'class' => 'CarteBundle\Entity\Location',
-                'multiple' => true,
-                'expanded' => true,
-            ));
+            ->add('positions', CollectionType::class, array(
+                'entry_type' => PositionType::class,
+                'allow_add' => true,
+                'by_reference' => false,
+        ));
     }
     
     /**
@@ -32,7 +32,8 @@ class CircuitType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'CarteBundle\Entity\Circuit'
+            'data_class' => 'CarteBundle\Entity\Circuit',
+            'cascade_validation' => true,
         ));
     }
 

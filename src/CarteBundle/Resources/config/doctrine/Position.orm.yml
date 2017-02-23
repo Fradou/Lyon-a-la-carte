@@ -14,15 +14,19 @@ CarteBundle\Entity\Position:
     manyToOne:
         location:
             targetEntity: CarteBundle\Entity\Location
-            inversedBy: notations
+            inversedBy: positions
             joinColumn:
                 name: location_id
                 referencedColumnName: id
         circuit:
             targetEntity: CarteBundle\Entity\Circuit
-            inversedBy: notations
+            inversedBy: positions
             joinColumn:
                 name: circuit_id
                 referencedColumnName: id
+    oneToMany:
+        users:
+            targetEntity: CarteBundle\Entity\User
+            mappedBy: position
 
     lifecycleCallbacks: {  }
