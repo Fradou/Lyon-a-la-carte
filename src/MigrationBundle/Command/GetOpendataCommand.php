@@ -1,7 +1,7 @@
 <?php
 
 
-namespace CarteBundle\Command;
+namespace MigrationBundle\Command;
 
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
