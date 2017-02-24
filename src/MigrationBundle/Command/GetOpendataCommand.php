@@ -20,7 +20,9 @@ class GetOpendataCommand extends ContainerAwareCommand
     }
 
     protected function execute(InputInterface $input, OutputInterface $output){
-        $this->getContainer();
+
+        // Call service to get all datas from opendatalyon API
+        $this->getContainer()->get('app.OpenLyon_getter')->getPlaces();
 
     }
 
