@@ -528,4 +528,88 @@ class Place
     {
         return $this->longitude;
     }
+    /**
+     * @var integer
+     */
+    private $idopen;
+
+    /**
+     * @var integer
+     */
+    private $gid;
+
+
+    /**
+     * Set idopen
+     *
+     * @param integer $idopen
+     * @return Place
+     */
+    public function setIdopen($idopen)
+    {
+        $this->idopen = $idopen;
+
+        return $this;
+    }
+
+    /**
+     * Get idopen
+     *
+     * @return integer 
+     */
+    public function getIdopen()
+    {
+        return $this->idopen;
+    }
+
+    /**
+     * Set gid
+     *
+     * @param integer $gid
+     * @return Place
+     */
+    public function setGid($gid)
+    {
+        $this->gid = $gid;
+
+        return $this;
+    }
+
+    /**
+     * Get gid
+     *
+     * @return integer 
+     */
+    public function getGid()
+    {
+        return $this->gid;
+    }
+    /**
+     * @var string
+     */
+    private $id_sitra1;
+
+
+    /**
+     * Set id_sitra1
+     *
+     * @param string $idSitra1
+     * @return Place
+     */
+    public function setIdSitra1($idSitra1)
+    {
+        $this->id_sitra1 = $idSitra1;
+
+        return $this;
+    }
+
+    /**
+     * Get id_sitra1
+     *
+     * @return string 
+     */
+    public function getIdSitra1()
+    {
+        return $this->id_sitra1;
+    }
 }

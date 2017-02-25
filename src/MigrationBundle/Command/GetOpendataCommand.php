@@ -48,6 +48,9 @@ class GetOpendataCommand extends ContainerAwareCommand
             $localisation->setMinrate($site['properties']['tarifsmin']);
             $localisation->setMaxrate($site['properties']['tarifsmax']);
             $localisation->setProducer($site['properties']['producteur']);
+            $localisation->setGid($site['properties']['gid']);
+            $localisation->setIdopen($site['properties']['id']);
+            $localisation->setIdSitra1($site['properties']['id_sitra1']);
             $localisation->setLatitude($site['geometry']['coordinates'][1]);
             $localisation->setLongitude($site['geometry']['coordinates'][0]);
 

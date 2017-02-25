@@ -77,4 +77,14 @@ MigrationBundle\Entity\Place:
             type: string
             length: 255
             nullable: true
+        idopen:
+            type: integer
+            nullable: true
+        id_sitra1:
+            type: string
+            length: 50
+            nullable: true
+        gid:
+            type: integer
+            nullable: true
     lifecycleCallbacks: {  }
