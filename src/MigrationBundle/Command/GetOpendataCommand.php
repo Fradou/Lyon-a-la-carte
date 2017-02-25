@@ -30,7 +30,9 @@ class GetOpendataCommand extends ContainerAwareCommand
 
         $output->writeln("j'ai mes raws 2 ");
         $em = $this->getContainer()->get("Doctrine")->getManager();
+        $emplace = $em->getRepository("MigrationBundle:Place");
         foreach ($sites as $site) {
+            if($emplace->findOneBy(array('idopen' => $site['properties']['id']))==null ){
             $localisation = new Place();
             $localisation->setType($site['properties']['type']);
             $localisation->setTypeDetail($site['properties']['type_detail']);
@@ -55,8 +57,15 @@ class GetOpendataCommand extends ContainerAwareCommand
             $localisation->setLongitude($site['geometry']['coordinates'][0]);
 
             $em->persist($localisation);
+            }
         }
         $em->flush();
+
+        $places = $em->getRepository("MigrationBundle:Place")->findAll();
+
+        foreach($places as $place){
+            if($place->getType()==("RESTAURATION" || "DEGUSTATION" )){}
+        }
 
     }
 }
