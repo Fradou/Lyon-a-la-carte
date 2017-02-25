@@ -4,6 +4,7 @@
 namespace MigrationBundle\Command;
 
 
+use CarteBundle\Entity\Location;
 use MigrationBundle\Entity\Place;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -24,15 +25,13 @@ class GetOpendataCommand extends ContainerAwareCommand
 
         // Call service to get all datas from opendatalyon API
         $rdatas = $this->getContainer()->get('app.OpenLyon_getter')->getPlaces();
-        $output->writeln("j'ai mes raws");
 
         $sites = $rdatas["features"];
 
-        $output->writeln("j'ai mes raws 2 ");
         $em = $this->getContainer()->get("Doctrine")->getManager();
         $emplace = $em->getRepository("MigrationBundle:Place");
         foreach ($sites as $site) {
-            if($emplace->findOneBy(array('idopen' => $site['properties']['id']))==null ){
+            if($emplace->findBy(array('idopen' => $site['properties']['id']))==null ){
             $localisation = new Place();
             $localisation->setType($site['properties']['type']);
             $localisation->setTypeDetail($site['properties']['type_detail']);
@@ -56,16 +55,33 @@ class GetOpendataCommand extends ContainerAwareCommand
             $localisation->setLatitude($site['geometry']['coordinates'][1]);
             $localisation->setLongitude($site['geometry']['coordinates'][0]);
 
-            $em->persist($localisation);
+                if($localisation->getType()==("PATRIMOINE_NATUREL" )){
+                    $location = new Location();
+                    $location->setType($site['properties']['type']);
+                    $location->setTypeDetail($site['properties']['type_detail']);
+                    $location->setName($site['properties']['nom']);
+                    $location->setAddress($site['properties']['adresse']);
+                    $location->setPostalcode($site['properties']['codepostal']);
+                    $location->setTown($site['properties']['commune']);
+                    $location->setPhone($site['properties']['telephone']);
+                    $location->setMail($site['properties']['email']);
+                    $location->setWebsite($site['properties']['siteweb']);
+                    $location->setFacebook($site['properties']['facebook']);
+                    $location->setRank($site['properties']['classement']);
+                    $location->setOpenhour($site['properties']['ouverture']);
+                    $location->setRateclear($site['properties']['tarifsenclair']);
+                    $location->setMinrate($site['properties']['tarifsmin']);
+                    $location->setMaxrate($site['properties']['tarifsmax']);
+                    $location->setProducer($site['properties']['producteur']);
+                    $location->setLatitude($site['geometry']['coordinates'][1]);
+                    $location->setLongitude($site['geometry']['coordinates'][0]);
+
+                    $em->persist($location);
+                }
+
+                $em->persist($localisation);
             }
         }
         $em->flush();
-
-        $places = $em->getRepository("MigrationBundle:Place")->findAll();
-
-        foreach($places as $place){
-            if($place->getType()==("RESTAURATION" || "DEGUSTATION" )){}
-        }
-
     }
 }
