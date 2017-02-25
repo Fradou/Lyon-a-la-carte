@@ -25,7 +25,6 @@ class GetOpendataCommand extends ContainerAwareCommand
         // Call service to get all datas from opendatalyon API
         $rdatas = $this->getContainer()->get('app.OpenLyon_getter')->getPlaces();
         $output->writeln("j'ai mes raws");
-        $output->writeln($this->varDumpToString($rdatas));
 
         $sites = $rdatas["features"];
 
@@ -57,13 +56,4 @@ class GetOpendataCommand extends ContainerAwareCommand
         $em->flush();
 
     }
-
-
-    function varDumpToString($var) {
-        ob_start();
-        var_dump($var);
-        $result = ob_get_clean();
-        return $result;
-    }
-
 }

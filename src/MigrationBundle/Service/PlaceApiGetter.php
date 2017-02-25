@@ -20,7 +20,7 @@ class PlaceApiGetter
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 
         // Connexion parameters.
-        curl_setopt($ch, CURLOPT_URL, "https://download.data.grandlyon.com/ws/rdata/sit_sitra.sittourisme/all.json?maxfeatures=5");
+        curl_setopt($ch, CURLOPT_URL, "https://download.data.grandlyon.com/wfs/rdata?SERVICE=WFS&VERSION=2.0.0&outputformat=GEOJSON&maxfeatures=6000&request=GetFeature&typename=sit_sitra.sittourisme");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
         $output = json_decode(curl_exec($ch), true);
         curl_close($ch);
