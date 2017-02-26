@@ -55,7 +55,8 @@ class GetOpendataCommand extends ContainerAwareCommand
             $localisation->setLatitude($site['geometry']['coordinates'][1]);
             $localisation->setLongitude($site['geometry']['coordinates'][0]);
 
-                if($localisation->getType()==("PATRIMOINE_NATUREL" )){
+                $type = $localisation->getType();
+                if($type == "PATRIMOINE_NATUREL" || $type == "PATRIMOINE_CULTUREL" || $type == "RESTAURATION" || $type== "DEGUSTATION"){
                     $location = new Location();
                     $location->setType($site['properties']['type']);
                     $location->setTypeDetail($site['properties']['type_detail']);
@@ -77,6 +78,10 @@ class GetOpendataCommand extends ContainerAwareCommand
                     $location->setLongitude($site['geometry']['coordinates'][0]);
 
                     $em->persist($location);
+                }
+
+                else if ($type == "EQUIPEMENT"){
+
                 }
 
                 $em->persist($localisation);
