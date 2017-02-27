@@ -6,6 +6,10 @@ parameters:
 services:
     app.OpenLyon_getter:
         class:  MigrationBundle\Service\PlaceApiGetter
+
+    app.OpenLyon_logger:
+        class:  MigrationBundle\Service\GetDataLogs
+        arguments: ['@Logger']
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
