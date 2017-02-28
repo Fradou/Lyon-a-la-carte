@@ -21,6 +21,7 @@ class GetDataLogs
     public function __construct(Logger $logger)
     {
         $this->logger = $logger;
+        $this->logger->info('Test log opendata');
     }
 
 }
