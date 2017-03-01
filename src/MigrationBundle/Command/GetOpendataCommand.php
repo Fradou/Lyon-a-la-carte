@@ -22,40 +22,40 @@ class GetOpendataCommand extends ContainerAwareCommand
     }
 
     protected function execute(InputInterface $input, OutputInterface $output){
-        $log = $this->getContainer()->get('app.OpenLyon_logger');
+        $logger = $this->getContainer()->get('monolog.logger.opendata');
         // Call service to get all datas from opendatalyon API
+        $logger->info("Connecting to API");
         $rdatas = $this->getContainer()->get('app.OpenLyon_getter')->getPlaces();
-        $log = $this->getContainer()->get('app.OpenLyon_logger');
-
 
         $sites = $rdatas["features"];
+        $logger->info("Got places :".count($sites));
 
         $em = $this->getContainer()->get("Doctrine")->getManager();
         $emplace = $em->getRepository("MigrationBundle:Place");
         foreach ($sites as $site) {
             if($emplace->findBy(array('idopen' => $site['properties']['id']))==null ){
-            $localisation = new Place();
-            $localisation->setType($site['properties']['type']);
-            $localisation->setTypeDetail($site['properties']['type_detail']);
-            $localisation->setName($site['properties']['nom']);
-            $localisation->setAddress($site['properties']['adresse']);
-            $localisation->setPostalcode($site['properties']['codepostal']);
-            $localisation->setTown($site['properties']['commune']);
-            $localisation->setPhone($site['properties']['telephone']);
-            $localisation->setMail($site['properties']['email']);
-            $localisation->setWebsite($site['properties']['siteweb']);
-            $localisation->setFacebook($site['properties']['facebook']);
-            $localisation->setRank($site['properties']['classement']);
-            $localisation->setOpenhour($site['properties']['ouverture']);
-            $localisation->setRateclear($site['properties']['tarifsenclair']);
-            $localisation->setMinrate($site['properties']['tarifsmin']);
-            $localisation->setMaxrate($site['properties']['tarifsmax']);
-            $localisation->setProducer($site['properties']['producteur']);
-            $localisation->setGid($site['properties']['gid']);
-            $localisation->setIdopen($site['properties']['id']);
-            $localisation->setIdSitra1($site['properties']['id_sitra1']);
-            $localisation->setLatitude($site['geometry']['coordinates'][1]);
-            $localisation->setLongitude($site['geometry']['coordinates'][0]);
+                $localisation = new Place();
+                $localisation->setType($site['properties']['type']);
+                $localisation->setTypeDetail($site['properties']['type_detail']);
+                $localisation->setName($site['properties']['nom']);
+                $localisation->setAddress($site['properties']['adresse']);
+                $localisation->setPostalcode($site['properties']['codepostal']);
+                $localisation->setTown($site['properties']['commune']);
+                $localisation->setPhone($site['properties']['telephone']);
+                $localisation->setMail($site['properties']['email']);
+                $localisation->setWebsite($site['properties']['siteweb']);
+                $localisation->setFacebook($site['properties']['facebook']);
+                $localisation->setRank($site['properties']['classement']);
+                $localisation->setOpenhour($site['properties']['ouverture']);
+                $localisation->setRateclear($site['properties']['tarifsenclair']);
+                $localisation->setMinrate($site['properties']['tarifsmin']);
+                $localisation->setMaxrate($site['properties']['tarifsmax']);
+                $localisation->setProducer($site['properties']['producteur']);
+                $localisation->setGid($site['properties']['gid']);
+                $localisation->setIdopen($site['properties']['id']);
+                $localisation->setIdSitra1($site['properties']['id_sitra1']);
+                $localisation->setLatitude($site['geometry']['coordinates'][1]);
+                $localisation->setLongitude($site['geometry']['coordinates'][0]);
 
                 $type = $localisation->getType();
                 if($type == "PATRIMOINE_NATUREL" || $type == "PATRIMOINE_CULTUREL" || $type == "RESTAURATION" || $type== "DEGUSTATION"){
