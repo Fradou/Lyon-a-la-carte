@@ -29,9 +29,27 @@ class GetOpendataCommand extends ContainerAwareCommand
 
         $sites = $rdatas["features"];
         $logger->info("Got places :".count($sites));
+        $sitesid = [];
+        foreach($sites as $site){
+            $sitesid[] = $site['properties']['id_sitra1'];
+        }
 
         $em = $this->getContainer()->get("Doctrine")->getManager();
         $emplace = $em->getRepository("MigrationBundle:Place");
+
+        $places = $emplace->findAll();
+        $placesid = [];
+        foreach($places as $place){
+            $placesid[] = $place->getIdSitral();
+        }
+
+        $newplaces = array_diff($sitesid, $placesid);
+        $newplacekeys = [];
+        foreach ($newplaces as $newplace){
+            $newplacekeys = array_search($newplace, )
+        }
+
+
         foreach ($sites as $site) {
             if($emplace->findBy(array('idopen' => $site['properties']['id']))==null ){
                 $localisation = new Place();
