@@ -46,7 +46,7 @@ class GetOpendataCommand extends ContainerAwareCommand
         $newplaces = array_diff($sitesid, $placesid);
         $newplacekeys = [];
         foreach ($newplaces as $newplace){
-            $newplacekeys = array_search($newplace, )
+       //     $newplacekeys = array_search($newplace, )
         }
 
 
