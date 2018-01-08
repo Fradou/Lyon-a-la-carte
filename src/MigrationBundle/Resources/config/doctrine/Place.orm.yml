@@ -1,0 +1,90 @@
+MigrationBundle\Entity\Place:
+    type: entity
+    table: null
+    repositoryClass: MigrationBundle\Repository\PlaceRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        type:
+            type: string
+            length: 255
+        typeDetail:
+            type: string
+            length: 255
+            nullable: true
+        name:
+            type: string
+            length: 255
+            nullable: true
+        address:
+            type: text
+            nullable: true
+        postalcode:
+            type: string
+            length: 255
+            nullable: true
+        town:
+            type: string
+            length: 255
+            nullable: true
+        phone:
+            type: string
+            length: 255
+            nullable: true
+        mail:
+            type: string
+            length: 255
+            nullable: true
+        website:
+            type: string
+            length: 255
+            nullable: true
+        facebook:
+            type: string
+            length: 255
+            nullable: true
+        rank:
+            type: string
+            length: 255
+            nullable: true
+        openhour:
+            type: text
+            nullable: true
+        rateclear:
+            type: text
+            nullable: true
+        minrate:
+            type: string
+            length: 255
+            nullable: true
+        maxrate:
+            type: string
+            length: 255
+            nullable: true
+        producer:
+            type: string
+            length: 255
+            nullable: true
+        latitude:
+            type: string
+            length: 255
+            nullable: true
+        longitude:
+            type: string
+            length: 255
+            nullable: true
+        idopen:
+            type: integer
+            nullable: true
+        id_sitra1:
+            type: string
+            length: 50
+            nullable: true
+        gid:
+            type: integer
+            nullable: true
+    lifecycleCallbacks: {  }
